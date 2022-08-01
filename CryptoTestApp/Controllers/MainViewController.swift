@@ -13,7 +13,7 @@ import UIKit
 final class MainViewController: UIViewController {
     
     var isLive = true
-    lazy var customTransitionDelegate = CustomSheetTransitionDelegate()
+    private var customTransitioningDelegate: UIViewControllerTransitioningDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,10 +98,28 @@ final class MainViewController: UIViewController {
     private lazy var liveLabel = LiveLabelView()
     
     @objc private func showDateTimePicker() {
-        let destinationVC = UINavigationController(rootViewController: DateTimePickerViewController())
-       
+        customTransitioningDelegate = CustomSheetTransitionDelegate(presentationControllerFactory: self)
+        let destinationVC = DateTimePickerViewController()
+        destinationVC.modalPresentationStyle = .custom
+        destinationVC.transitioningDelegate = customTransitioningDelegate
         present(destinationVC, animated: true)
     }
+}
+
+extension MainViewController: CustomSheetPresentationControllerFactory {
+    func makeCustomSheetPresentationController(presentedViewController: UIViewController, presentingViewController: UIViewController?) -> CustomSheetPresentationController {
+        .init(presentedViewController: presentedViewController, presentingViewController: presentingViewController, dismissalHandler: self)
+    }
+    
+    
+}
+
+extension MainViewController: CustomSheetDismissalController {
+    func performDismissal(animated: Bool) {
+        presentedViewController?.dismiss(animated: animated)
+    }
+    
+    
 }
 
 extension UINavigationController {

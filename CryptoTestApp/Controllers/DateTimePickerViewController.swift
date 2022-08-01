@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 final class DateTimePickerViewController: UIViewController {
+    private var initialOrientation: UIDeviceOrientation?
     private var dateChosen: Date? {
         didSet {
             if let dateChosen = dateChosen {
@@ -39,6 +40,7 @@ final class DateTimePickerViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         navigationController?.navigationBar.isHidden = true
+        initialOrientation = UIDevice.current.orientation
 
         view.addSubview(cancelButton)
         view.addSubview(sheetTitle)
@@ -60,24 +62,43 @@ final class DateTimePickerViewController: UIViewController {
         let safeArea = view.safeAreaLayoutGuide
         
         NSLayoutConstraint.activate([
-            cancelButton.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 15),
+            cancelButton.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 13),
             cancelButton.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 16),
             
             sheetTitle.centerYAnchor.constraint(equalTo: cancelButton.centerYAnchor),
             sheetTitle.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
             
             doneButton.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -16),
-            doneButton.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 15),
+            doneButton.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 13),
             
             dateTimeFields.topAnchor.constraint(equalTo: cancelButton.bottomAnchor, constant: 25),
             dateTimeFields.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 13),
             dateTimeFields.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -13),
             
             dateTimeOptions.topAnchor.constraint(equalTo: dateTimeFields.bottomAnchor, constant: 10),
-            dateTimeOptions.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            dateTimeOptions.widthAnchor.constraint(equalTo: view.widthAnchor)
+            dateTimeOptions.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
+            dateTimeOptions.widthAnchor.constraint(equalTo: safeArea.widthAnchor)
         ])
+        
+        view.layoutIfNeeded()
+
+        
     }
+    
+    override func viewDidLayoutSubviews() {
+        
+        if UIDevice.current.orientation.isLandscape && !initialOrientation!.isLandscape || !UIDevice.current.orientation.isLandscape && initialOrientation!.isLandscape {
+            self.dismiss(animated: true)
+        }
+
+        let height = cancelButton.bounds.height + dateTimeFields.bounds.height + dateTimeOptions.bounds.height + 15 + 25 + 10 + 46
+        print("height \(height)")
+        
+        preferredContentSize = CGSize(width: view.bounds.width, height: height)
+
+    }
+    
+    
     
     private func updateDoneButton() {
         if let _ = dateChosen, let _ = timeChosen {
@@ -88,6 +109,7 @@ final class DateTimePickerViewController: UIViewController {
     }
     
     
+    
     private lazy var cancelButton: UIButton = {
         let button = UIButton()
         let font = UIFont.systemFont(ofSize: 17, weight: .regular)
@@ -95,6 +117,7 @@ final class DateTimePickerViewController: UIViewController {
         let title = NSAttributedString(string: "Отменить", attributes: [.font: font, .foregroundColor: textColor])
       
         button.setAttributedTitle(title, for: .normal)
+        button.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
         
         return button
     }()
@@ -212,6 +235,10 @@ final class DateTimePickerViewController: UIViewController {
     
     @objc func showTimePicker() {
         navigationController?.fadeTo(TimePickerViewController())
+    }
+    
+    @objc func dismissView() {
+        self.dismiss(animated: true)
     }
                                                    
 }

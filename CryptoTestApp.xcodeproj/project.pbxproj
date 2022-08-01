@@ -16,6 +16,7 @@
 		DB1980A52897F94F00459C6C /* DateTimeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1980A42897F94F00459C6C /* DateTimeModel.swift */; };
 		DB1980A728984BC300459C6C /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1980A628984BC200459C6C /* CalendarViewController.swift */; };
 		DB1980A928985B7600459C6C /* TimePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1980A828985B7600459C6C /* TimePickerViewController.swift */; };
+		DB1980AB28988FAB00459C6C /* CustomSheetDismissalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1980AA28988FAB00459C6C /* CustomSheetDismissalController.swift */; };
 		DB8C91962896675F0085C9A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8C91952896675F0085C9A3 /* AppDelegate.swift */; };
 		DB8C91982896675F0085C9A3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8C91972896675F0085C9A3 /* SceneDelegate.swift */; };
 		DB8C919F289667660085C9A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB8C919E289667660085C9A3 /* Assets.xcassets */; };
@@ -35,6 +36,7 @@
 		DB1980A42897F94F00459C6C /* DateTimeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeModel.swift; sourceTree = "<group>"; };
 		DB1980A628984BC200459C6C /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		DB1980A828985B7600459C6C /* TimePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerViewController.swift; sourceTree = "<group>"; };
+		DB1980AA28988FAB00459C6C /* CustomSheetDismissalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSheetDismissalController.swift; sourceTree = "<group>"; };
 		DB8C91922896675F0085C9A3 /* CryptoTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB8C91952896675F0085C9A3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DB8C91972896675F0085C9A3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 			children = (
 				DB19809B289704AE00459C6C /* CustomSheetTransitionDelegate.swift */,
 				DB19809D289706A400459C6C /* CustomSheetPresentationController.swift */,
+				DB1980AA28988FAB00459C6C /* CustomSheetDismissalController.swift */,
 			);
 			path = Transitions;
 			sourceTree = "<group>";
@@ -211,6 +214,7 @@
 				DB1980A728984BC300459C6C /* CalendarViewController.swift in Sources */,
 				DB8C91B0289687230085C9A3 /* CurrencyValueView.swift in Sources */,
 				DB8C91AE28966F300085C9A3 /* RoundedButton.swift in Sources */,
+				DB1980AB28988FAB00459C6C /* CustomSheetDismissalController.swift in Sources */,
 				DB8C91AB289669A10085C9A3 /* MainViewController.swift in Sources */,
 				DB1980992896E83D00459C6C /* DateTimePickerViewController.swift in Sources */,
 			);
