@@ -1,0 +1,427 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DB1980972896E3AA00459C6C /* LiveLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1980962896E3AA00459C6C /* LiveLabelView.swift */; };
+		DB1980992896E83D00459C6C /* DateTimePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1980982896E83D00459C6C /* DateTimePickerViewController.swift */; };
+		DB19809C289704AE00459C6C /* CustomSheetTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB19809B289704AE00459C6C /* CustomSheetTransitionDelegate.swift */; };
+		DB19809E289706A400459C6C /* CustomSheetPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB19809D289706A400459C6C /* CustomSheetPresentationController.swift */; };
+		DB1980A02897DBA700459C6C /* RoundedLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB19809F2897DBA600459C6C /* RoundedLabelView.swift */; };
+		DB1980A22897EB6700459C6C /* DateTimeSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1980A12897EB6700459C6C /* DateTimeSettingView.swift */; };
+		DB1980A52897F94F00459C6C /* DateTimeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1980A42897F94F00459C6C /* DateTimeModel.swift */; };
+		DB1980A728984BC300459C6C /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1980A628984BC200459C6C /* CalendarViewController.swift */; };
+		DB1980A928985B7600459C6C /* TimePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1980A828985B7600459C6C /* TimePickerViewController.swift */; };
+		DB8C91962896675F0085C9A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8C91952896675F0085C9A3 /* AppDelegate.swift */; };
+		DB8C91982896675F0085C9A3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8C91972896675F0085C9A3 /* SceneDelegate.swift */; };
+		DB8C919F289667660085C9A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB8C919E289667660085C9A3 /* Assets.xcassets */; };
+		DB8C91A2289667660085C9A3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB8C91A0289667660085C9A3 /* LaunchScreen.storyboard */; };
+		DB8C91AB289669A10085C9A3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8C91AA289669A10085C9A3 /* MainViewController.swift */; };
+		DB8C91AE28966F300085C9A3 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8C91AD28966F300085C9A3 /* RoundedButton.swift */; };
+		DB8C91B0289687230085C9A3 /* CurrencyValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8C91AF289687230085C9A3 /* CurrencyValueView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		DB1980962896E3AA00459C6C /* LiveLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveLabelView.swift; sourceTree = "<group>"; };
+		DB1980982896E83D00459C6C /* DateTimePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimePickerViewController.swift; sourceTree = "<group>"; };
+		DB19809B289704AE00459C6C /* CustomSheetTransitionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSheetTransitionDelegate.swift; sourceTree = "<group>"; };
+		DB19809D289706A400459C6C /* CustomSheetPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSheetPresentationController.swift; sourceTree = "<group>"; };
+		DB19809F2897DBA600459C6C /* RoundedLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedLabelView.swift; sourceTree = "<group>"; };
+		DB1980A12897EB6700459C6C /* DateTimeSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeSettingView.swift; sourceTree = "<group>"; };
+		DB1980A42897F94F00459C6C /* DateTimeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeModel.swift; sourceTree = "<group>"; };
+		DB1980A628984BC200459C6C /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		DB1980A828985B7600459C6C /* TimePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerViewController.swift; sourceTree = "<group>"; };
+		DB8C91922896675F0085C9A3 /* CryptoTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB8C91952896675F0085C9A3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		DB8C91972896675F0085C9A3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		DB8C919E289667660085C9A3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DB8C91A1289667660085C9A3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		DB8C91A3289667660085C9A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DB8C91AA289669A10085C9A3 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		DB8C91AD28966F300085C9A3 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
+		DB8C91AF289687230085C9A3 /* CurrencyValueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyValueView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DB8C918F2896675F0085C9A3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DB19809A2897047700459C6C /* Transitions */ = {
+			isa = PBXGroup;
+			children = (
+				DB19809B289704AE00459C6C /* CustomSheetTransitionDelegate.swift */,
+				DB19809D289706A400459C6C /* CustomSheetPresentationController.swift */,
+			);
+			path = Transitions;
+			sourceTree = "<group>";
+		};
+		DB1980A32897F93B00459C6C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DB1980A42897F94F00459C6C /* DateTimeModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		DB8C91892896675F0085C9A3 = {
+			isa = PBXGroup;
+			children = (
+				DB8C91942896675F0085C9A3 /* CryptoTestApp */,
+				DB8C91932896675F0085C9A3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DB8C91932896675F0085C9A3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DB8C91922896675F0085C9A3 /* CryptoTestApp.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DB8C91942896675F0085C9A3 /* CryptoTestApp */ = {
+			isa = PBXGroup;
+			children = (
+				DB1980A32897F93B00459C6C /* Models */,
+				DB19809A2897047700459C6C /* Transitions */,
+				DB8C91AC28966F110085C9A3 /* Views */,
+				DB8C91A9289669660085C9A3 /* Controllers */,
+				DB8C91952896675F0085C9A3 /* AppDelegate.swift */,
+				DB8C91972896675F0085C9A3 /* SceneDelegate.swift */,
+				DB8C919E289667660085C9A3 /* Assets.xcassets */,
+				DB8C91A0289667660085C9A3 /* LaunchScreen.storyboard */,
+				DB8C91A3289667660085C9A3 /* Info.plist */,
+			);
+			path = CryptoTestApp;
+			sourceTree = "<group>";
+		};
+		DB8C91A9289669660085C9A3 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				DB8C91AA289669A10085C9A3 /* MainViewController.swift */,
+				DB1980982896E83D00459C6C /* DateTimePickerViewController.swift */,
+				DB1980A628984BC200459C6C /* CalendarViewController.swift */,
+				DB1980A828985B7600459C6C /* TimePickerViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		DB8C91AC28966F110085C9A3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DB8C91AD28966F300085C9A3 /* RoundedButton.swift */,
+				DB8C91AF289687230085C9A3 /* CurrencyValueView.swift */,
+				DB1980962896E3AA00459C6C /* LiveLabelView.swift */,
+				DB19809F2897DBA600459C6C /* RoundedLabelView.swift */,
+				DB1980A12897EB6700459C6C /* DateTimeSettingView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DB8C91912896675F0085C9A3 /* CryptoTestApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DB8C91A6289667660085C9A3 /* Build configuration list for PBXNativeTarget "CryptoTestApp" */;
+			buildPhases = (
+				DB8C918E2896675F0085C9A3 /* Sources */,
+				DB8C918F2896675F0085C9A3 /* Frameworks */,
+				DB8C91902896675F0085C9A3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CryptoTestApp;
+			productName = CryptoTestApp;
+			productReference = DB8C91922896675F0085C9A3 /* CryptoTestApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DB8C918A2896675F0085C9A3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1310;
+				LastUpgradeCheck = 1310;
+				TargetAttributes = {
+					DB8C91912896675F0085C9A3 = {
+						CreatedOnToolsVersion = 13.1;
+					};
+				};
+			};
+			buildConfigurationList = DB8C918D2896675F0085C9A3 /* Build configuration list for PBXProject "CryptoTestApp" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DB8C91892896675F0085C9A3;
+			productRefGroup = DB8C91932896675F0085C9A3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DB8C91912896675F0085C9A3 /* CryptoTestApp */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DB8C91902896675F0085C9A3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB8C91A2289667660085C9A3 /* LaunchScreen.storyboard in Resources */,
+				DB8C919F289667660085C9A3 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DB8C918E2896675F0085C9A3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB1980A52897F94F00459C6C /* DateTimeModel.swift in Sources */,
+				DB1980A22897EB6700459C6C /* DateTimeSettingView.swift in Sources */,
+				DB19809C289704AE00459C6C /* CustomSheetTransitionDelegate.swift in Sources */,
+				DB1980A02897DBA700459C6C /* RoundedLabelView.swift in Sources */,
+				DB8C91962896675F0085C9A3 /* AppDelegate.swift in Sources */,
+				DB1980972896E3AA00459C6C /* LiveLabelView.swift in Sources */,
+				DB1980A928985B7600459C6C /* TimePickerViewController.swift in Sources */,
+				DB8C91982896675F0085C9A3 /* SceneDelegate.swift in Sources */,
+				DB19809E289706A400459C6C /* CustomSheetPresentationController.swift in Sources */,
+				DB1980A728984BC300459C6C /* CalendarViewController.swift in Sources */,
+				DB8C91B0289687230085C9A3 /* CurrencyValueView.swift in Sources */,
+				DB8C91AE28966F300085C9A3 /* RoundedButton.swift in Sources */,
+				DB8C91AB289669A10085C9A3 /* MainViewController.swift in Sources */,
+				DB1980992896E83D00459C6C /* DateTimePickerViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		DB8C91A0289667660085C9A3 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DB8C91A1289667660085C9A3 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DB8C91A4289667660085C9A3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		DB8C91A5289667660085C9A3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DB8C91A7289667660085C9A3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 57N35P6574;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CryptoTestApp/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.hse.cs.CryptoTestApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DB8C91A8289667660085C9A3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 57N35P6574;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CryptoTestApp/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.hse.cs.CryptoTestApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DB8C918D2896675F0085C9A3 /* Build configuration list for PBXProject "CryptoTestApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB8C91A4289667660085C9A3 /* Debug */,
+				DB8C91A5289667660085C9A3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DB8C91A6289667660085C9A3 /* Build configuration list for PBXNativeTarget "CryptoTestApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB8C91A7289667660085C9A3 /* Debug */,
+				DB8C91A8289667660085C9A3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DB8C918A2896675F0085C9A3 /* Project object */;
+}
