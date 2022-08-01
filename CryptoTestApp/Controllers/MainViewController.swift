@@ -33,7 +33,6 @@ final class MainViewController: UIViewController {
             view.addSubview(liveLabel)
             setUpLiveLabel()
         }
-        dateTimePickerButton.setUpGradient()
     }
     
     
@@ -72,7 +71,6 @@ final class MainViewController: UIViewController {
         
     }
     
-    
     private lazy var appTitleLabel: UILabel = {
         let label = UILabel()
         label.text = "Тестовое задание"
@@ -82,12 +80,16 @@ final class MainViewController: UIViewController {
         
     }()
   
-    private lazy var dateTimeFieldView = RoundedButton()
+    private lazy var dateTimeFieldView: RoundedLabelView = {
+        let roundedLabel = RoundedLabelView()
+        roundedLabel.setText(text: "Cейчас", color: .black, fontSize: 16, fontWeight: .regular)
+        return roundedLabel
+    }()
     
     private lazy var dateTimePickerButton: RoundedButton = {
         let roundedButton = RoundedButton(frame: .zero)
         roundedButton.setText(text: "Выбрать дату", color: .white, fontSize: 17, fontWeight: .medium)
-        
+        roundedButton.setUpGradient()
         return roundedButton
     }()
     

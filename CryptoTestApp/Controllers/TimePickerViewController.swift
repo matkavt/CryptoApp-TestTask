@@ -20,6 +20,7 @@ final class TimePickerViewController: UIViewController {
         view.addSubview(sheetTitle)
         view.addSubview(deleteButton)
         view.addSubview(timeView)
+        view.addSubview(chooseButton)
         
         deleteButton.isEnabled = false
         setUpConstraints()
@@ -44,7 +45,11 @@ final class TimePickerViewController: UIViewController {
             
             timeView.topAnchor.constraint(equalTo: sheetTitle.bottomAnchor, constant: 15),
             timeView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 30),
-            timeView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -30)
+            timeView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -30),
+            
+            chooseButton.topAnchor.constraint(equalTo: timeView.bottomAnchor, constant: 15),
+            chooseButton.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 12),
+            chooseButton.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -12)
             
         ])
     }
@@ -94,6 +99,15 @@ final class TimePickerViewController: UIViewController {
         }
         
         return datePicker
+    }()
+    
+    private lazy var chooseButton: RoundedButton = {
+        let roundedButton = RoundedButton()
+        roundedButton.setText(text: "Выбрать", color: .white, fontSize: 17, fontWeight: .medium)
+        roundedButton.setBackgroundColor(UIColor(red: 0, green: 80/255, blue: 207/255, alpha: 1))
+        
+        return roundedButton
+        
     }()
     
 }

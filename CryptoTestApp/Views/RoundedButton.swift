@@ -30,7 +30,6 @@ final class RoundedButton: UIView {
     
     private func setUp() {
         // TODO: Make resource file with all the colors
-        backgroundColor = UIColor(red: 0.949, green: 0.953, blue: 0.961, alpha: 1)
         layer.cornerRadius = 10
         
         textLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -46,7 +45,7 @@ final class RoundedButton: UIView {
     
     private lazy var textLabel: UILabel = {
         let label = UILabel()
-        label.text = "Сейчас"
+        label.text = ""
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 16, weight: .regular)
         return label
@@ -56,6 +55,10 @@ final class RoundedButton: UIView {
         textLabel.text = text
         textLabel.textColor = color
         textLabel.font = .systemFont(ofSize: fontSize, weight: fontWeight)
+    }
+    
+    func setBackgroundColor(_ color: UIColor) {
+        backgroundColor = color
     }
     
     func setUpGradient() {
