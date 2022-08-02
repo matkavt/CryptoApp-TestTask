@@ -50,3 +50,22 @@ final class CustomSheetNavigationController: UINavigationController {
     
     }
 }
+
+
+extension UINavigationController {
+    func fadeTo(_ viewController: UIViewController) {
+        let transition: CATransition = CATransition()
+        transition.duration = 0.15
+        transition.type = CATransitionType.fade
+        view.layer.add(transition, forKey: nil)
+        pushViewController(viewController, animated: false)
+    }
+    
+    func fadeToRootViewController(_ viewController: UIViewController) {
+        let transition: CATransition = CATransition()
+        transition.duration = 0.15
+        transition.type = CATransitionType.fade
+        view.layer.add(transition, forKey: nil)
+        popToRootViewController(animated: false)
+    }
+}

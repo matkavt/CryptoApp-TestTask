@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		DB09664F289942B1008D278B /* CustomSheetNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB09664E289942B1008D278B /* CustomSheetNavigationController.swift */; };
+		DB096653289972DB008D278B /* ETHCostResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB096652289972DB008D278B /* ETHCostResponse.swift */; };
+		DB096656289982AF008D278B /* APIRequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB096655289982AF008D278B /* APIRequestProtocol.swift */; };
+		DB0966582899850D008D278B /* ETHCostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0966572899850D008D278B /* ETHCostRequest.swift */; };
+		DB09665A28998656008D278B /* APIResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB09665928998656008D278B /* APIResource.swift */; };
+		DB09665C28998B01008D278B /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB09665B28998B01008D278B /* NetworkManager.swift */; };
+		DB09665E28998BFC008D278B /* ETHResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB09665D28998BFC008D278B /* ETHResource.swift */; };
 		DB1980972896E3AA00459C6C /* LiveLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1980962896E3AA00459C6C /* LiveLabelView.swift */; };
 		DB1980992896E83D00459C6C /* DateTimePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1980982896E83D00459C6C /* DateTimePickerViewController.swift */; };
 		DB19809C289704AE00459C6C /* CustomSheetTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB19809B289704AE00459C6C /* CustomSheetTransitionDelegate.swift */; };
@@ -29,6 +35,12 @@
 
 /* Begin PBXFileReference section */
 		DB09664E289942B1008D278B /* CustomSheetNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSheetNavigationController.swift; sourceTree = "<group>"; };
+		DB096652289972DB008D278B /* ETHCostResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETHCostResponse.swift; sourceTree = "<group>"; };
+		DB096655289982AF008D278B /* APIRequestProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestProtocol.swift; sourceTree = "<group>"; };
+		DB0966572899850D008D278B /* ETHCostRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETHCostRequest.swift; sourceTree = "<group>"; };
+		DB09665928998656008D278B /* APIResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResource.swift; sourceTree = "<group>"; };
+		DB09665B28998B01008D278B /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		DB09665D28998BFC008D278B /* ETHResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETHResource.swift; sourceTree = "<group>"; };
 		DB1980962896E3AA00459C6C /* LiveLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveLabelView.swift; sourceTree = "<group>"; };
 		DB1980982896E83D00459C6C /* DateTimePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimePickerViewController.swift; sourceTree = "<group>"; };
 		DB19809B289704AE00459C6C /* CustomSheetTransitionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSheetTransitionDelegate.swift; sourceTree = "<group>"; };
@@ -61,6 +73,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DB096654289980F5008D278B /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				DB096655289982AF008D278B /* APIRequestProtocol.swift */,
+				DB0966572899850D008D278B /* ETHCostRequest.swift */,
+				DB09665928998656008D278B /* APIResource.swift */,
+				DB09665B28998B01008D278B /* NetworkManager.swift */,
+				DB09665D28998BFC008D278B /* ETHResource.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		DB19809A2897047700459C6C /* Transitions */ = {
 			isa = PBXGroup;
 			children = (
@@ -76,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				DB1980A42897F94F00459C6C /* DateTimeModel.swift */,
+				DB096652289972DB008D278B /* ETHCostResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -99,6 +124,7 @@
 		DB8C91942896675F0085C9A3 /* CryptoTestApp */ = {
 			isa = PBXGroup;
 			children = (
+				DB096654289980F5008D278B /* Networking */,
 				DB1980A32897F93B00459C6C /* Models */,
 				DB19809A2897047700459C6C /* Transitions */,
 				DB8C91AC28966F110085C9A3 /* Views */,
@@ -206,9 +232,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB1980A52897F94F00459C6C /* DateTimeModel.swift in Sources */,
+				DB09665E28998BFC008D278B /* ETHResource.swift in Sources */,
 				DB1980A22897EB6700459C6C /* DateTimeSettingView.swift in Sources */,
 				DB19809C289704AE00459C6C /* CustomSheetTransitionDelegate.swift in Sources */,
+				DB09665C28998B01008D278B /* NetworkManager.swift in Sources */,
 				DB09664F289942B1008D278B /* CustomSheetNavigationController.swift in Sources */,
+				DB096656289982AF008D278B /* APIRequestProtocol.swift in Sources */,
 				DB1980A02897DBA700459C6C /* RoundedLabelView.swift in Sources */,
 				DB8C91962896675F0085C9A3 /* AppDelegate.swift in Sources */,
 				DB1980972896E3AA00459C6C /* LiveLabelView.swift in Sources */,
@@ -218,8 +247,11 @@
 				DB1980A728984BC300459C6C /* CalendarViewController.swift in Sources */,
 				DB8C91B0289687230085C9A3 /* CurrencyValueView.swift in Sources */,
 				DB8C91AE28966F300085C9A3 /* RoundedButton.swift in Sources */,
+				DB0966582899850D008D278B /* ETHCostRequest.swift in Sources */,
 				DB1980AB28988FAB00459C6C /* CustomSheetDismissalController.swift in Sources */,
+				DB096653289972DB008D278B /* ETHCostResponse.swift in Sources */,
 				DB8C91AB289669A10085C9A3 /* MainViewController.swift in Sources */,
+				DB09665A28998656008D278B /* APIResource.swift in Sources */,
 				DB1980992896E83D00459C6C /* DateTimePickerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

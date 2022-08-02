@@ -7,5 +7,7 @@
 
 import Foundation
 
-struct DateTime {
+struct DateTimeCost: Codable {
+    let savedDateTime: Date
+    let savedCost: Double
 }

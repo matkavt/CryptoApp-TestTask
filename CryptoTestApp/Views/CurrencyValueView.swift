@@ -11,8 +11,9 @@ import UIKit
 final class CurrencyValueView: UIStackView {
     
     let excangeCount = 1
-    var excangeResult = 1483.03 {
+    var excangeResult = 0.0 {
         didSet {
+            if oldValue == 0.0 { resultLabel.alpha = 1 }
             resultLabel.text = "= \(excangeResult) $"
         }
     }
@@ -51,6 +52,7 @@ final class CurrencyValueView: UIStackView {
     private lazy var resultLabel: UILabel = {
         let label = UILabel()
         label.text = " = \(excangeResult) $"
+        label.alpha = 0.5
         label.font = .systemFont(ofSize: 24, weight: .semibold)
         return label
     }()

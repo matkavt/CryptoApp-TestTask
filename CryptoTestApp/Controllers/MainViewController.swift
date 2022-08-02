@@ -12,8 +12,15 @@ import UIKit
 
 final class MainViewController: UIViewController {
     
-    var isLive = true
+    private var isLive = true
+    private var currentCost: Double = 0.0 {
+        didSet {
+            currencyView.excangeResult = currentCost
+        }
+    }
+    
     private var customTransitioningDelegate: UIViewControllerTransitioningDelegate?
+    private let networkManager = NetworkManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +39,7 @@ final class MainViewController: UIViewController {
         if isLive {
             view.addSubview(liveLabel)
             setUpLiveLabel()
+            startTimer()
         }
     }
     
@@ -68,7 +76,16 @@ final class MainViewController: UIViewController {
             liveLabel.topAnchor.constraint(equalTo: dateTimePickerButton.bottomAnchor, constant: 36),
             liveLabel.leadingAnchor.constraint(equalTo: currencyView.trailingAnchor, constant: 4),
         ])
-        
+    }
+    
+    private func startTimer() {
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
+            self.networkManager.fetchLiveETHCost {data in
+                if let cost = data?.cost {
+                    self.currentCost = cost
+                }
+            }
+        }
     }
     
     private lazy var appTitleLabel: UILabel = {
@@ -122,20 +139,3 @@ extension MainViewController: CustomSheetDismissalController {
     
 }
 
-extension UINavigationController {
-    func fadeTo(_ viewController: UIViewController) {
-        let transition: CATransition = CATransition()
-        transition.duration = 0.15
-        transition.type = CATransitionType.fade
-        view.layer.add(transition, forKey: nil)
-        pushViewController(viewController, animated: false)
-    }
-    
-    func fadeToRootViewController(_ viewController: UIViewController) {
-        let transition: CATransition = CATransition()
-        transition.duration = 0.15
-        transition.type = CATransitionType.fade
-        view.layer.add(transition, forKey: nil)
-        popToRootViewController(animated: false)
-    }
-}
