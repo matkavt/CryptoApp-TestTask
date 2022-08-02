@@ -7,11 +7,9 @@
 
 import Foundation
 
-struct ETHCostResponseForTime {
-    let cost: Double
-}
 
-struct ETHCostResponse: Codable {
+
+struct ETHCostResponse: Decodable {
     let cost: Double
 }
 
@@ -21,18 +19,20 @@ extension ETHCostResponse {
     }
 }
 
-extension ETHCostResponseForTime: Decodable {
+struct ETHCostResponseForTime: Decodable {
+    let eth: Eth
+
     enum CodingKeys: String, CodingKey {
-        case currency = "ETH"
-        
-        enum ETHKeys: String, CodingKey {
-            case cost = "USD"
-        }
-    }
-    
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        let costContainer = try container.nestedContainer(keyedBy: CodingKeys.ETHKeys.self, forKey: .currency)
-        cost = try costContainer.decode(Double.self, forKey: .cost)
+        case eth = "ETH"
     }
 }
+
+struct Eth: Decodable {
+    let usd: Double
+
+    enum CodingKeys: String, CodingKey {
+        case usd = "USD"
+    }
+}
+
+

@@ -14,8 +14,8 @@ class ETHLiveResource: APIResource {
 
 }
 
-//class ETHHistoricalResource: APIResource {
-//    typealias ModelType = ETHCostResponseForTime
-//    
-//    var time: String?
-//}
+class ETHHistoricalResource: APIResource {
+    typealias ModelType = ETHCostResponseForTime
+    
+    var time: String?
+}

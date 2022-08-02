@@ -12,10 +12,24 @@ import UIKit
 
 final class MainViewController: UIViewController {
     
-    private var isLive = true
+    private var isLive = false
     private var currentCost: Double = 0.0 {
         didSet {
             currencyView.excangeResult = currentCost
+        }
+    }
+    
+    private var savedDate: Date? = Date() {
+        didSet {
+            if let savedDate = savedDate {
+                isLive = false
+                liveLabel.isHidden = true
+                getCost(by: savedDate)
+            } else {
+                isLive = true
+                liveLabel.isHidden = false
+                startTimer()
+            }
         }
     }
     
@@ -35,11 +49,14 @@ final class MainViewController: UIViewController {
         dateTimePickerButton.addGestureRecognizer(tapRecognizer)
         
         setUpConstraints()
+        view.addSubview(liveLabel)
+        setUpLiveLabel()
         
         if isLive {
-            view.addSubview(liveLabel)
-            setUpLiveLabel()
             startTimer()
+        } else {
+            getCost(by: savedDate!)
+            liveLabel.isHidden = true
         }
     }
     
@@ -66,7 +83,7 @@ final class MainViewController: UIViewController {
             
             currencyView.topAnchor.constraint(equalTo: dateTimePickerButton.bottomAnchor, constant: 44),
             currencyView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-
+            
         ])
     }
     
@@ -76,14 +93,28 @@ final class MainViewController: UIViewController {
             liveLabel.topAnchor.constraint(equalTo: dateTimePickerButton.bottomAnchor, constant: 36),
             liveLabel.leadingAnchor.constraint(equalTo: currencyView.trailingAnchor, constant: 4),
         ])
+        
     }
     
     private func startTimer() {
         Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
+            if let _ = self.savedDate {
+                self.networkManager.isLoading = false
+                timer.invalidate()
+            }
+            
             self.networkManager.fetchLiveETHCost {data in
                 if let cost = data?.cost {
                     self.currentCost = cost
                 }
+            }
+        }
+    }
+    
+    private func getCost(by date: Date) {
+        networkManager.fetchETHCost(by: date) { data in
+            if let cost = data?.eth.usd {
+                self.currentCost = cost
             }
         }
     }
@@ -96,7 +127,7 @@ final class MainViewController: UIViewController {
         return label
         
     }()
-  
+    
     private lazy var dateTimeFieldView: RoundedLabelView = {
         let roundedLabel = RoundedLabelView()
         roundedLabel.setText(text: "Cейчас", color: .black, fontSize: 16, fontWeight: .regular)
