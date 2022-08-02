@@ -44,9 +44,18 @@ final class CalendarViewController: UIViewController {
             
             calendarView.topAnchor.constraint(equalTo: sheetTitle.bottomAnchor, constant: 15),
             calendarView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 30),
-            calendarView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -30)
+            calendarView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -30),
+            calendarView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -5)
             
         ])
+    }
+    
+    override func viewDidLayoutSubviews() {
+        let height = cancelButton.bounds.height + 30 + 320
+        
+        UIView.animate(withDuration: 0.2, animations: { [self] in
+            preferredContentSize = CGSize(width: view.bounds.width, height: height)
+        })
     }
     
     private lazy var cancelButton: UIButton = {
@@ -54,6 +63,9 @@ final class CalendarViewController: UIViewController {
         let font = UIFont.systemFont(ofSize: 17, weight: .regular)
         let textColor = UIColor(red: 0, green: 80/255, blue: 207/255, alpha: 1)
         let title = NSAttributedString(string: "Отменить", attributes: [.font: font, .foregroundColor: textColor])
+        
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissCalendar))
+        button.addGestureRecognizer(tapRecognizer)
       
         button.setAttributedTitle(title, for: .normal)
         
@@ -86,7 +98,6 @@ final class CalendarViewController: UIViewController {
         let datePicker = UIDatePicker()
         datePicker.preferredDatePickerStyle = .inline
         datePicker.datePickerMode = .date
-        datePicker.sizeToFit()
         
         if let previousDate = previousDate {
             datePicker.date = previousDate
@@ -94,5 +105,9 @@ final class CalendarViewController: UIViewController {
         
         return datePicker
     }()
+    
+    @objc func dismissCalendar() {
+        navigationController?.fadeToRootViewController(self)
+    }
 }
 

@@ -52,10 +52,20 @@ final class TimePickerViewController: UIViewController {
             chooseButton.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -12)
             
         ])
+        
+        view.layoutIfNeeded()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        let height = cancelButton.bounds.height + chooseButton.bounds.height + 15 + 30 + 206
+        preferredContentSize = CGSize(width: view.bounds.width, height: height)
     }
     
     private lazy var cancelButton: UIButton = {
         let button = UIButton()
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissPicker))
+        button.addGestureRecognizer(tapRecognizer)
+        
         let font = UIFont.systemFont(ofSize: 17, weight: .regular)
         let textColor = UIColor(red: 0, green: 80/255, blue: 207/255, alpha: 1)
         let title = NSAttributedString(string: "Отменить", attributes: [.font: font, .foregroundColor: textColor])
@@ -109,5 +119,9 @@ final class TimePickerViewController: UIViewController {
         return roundedButton
         
     }()
+    
+    @objc func dismissPicker() {
+        navigationController?.fadeToRootViewController(self)
+    }
     
 }

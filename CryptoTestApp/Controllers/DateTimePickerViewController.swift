@@ -81,6 +81,7 @@ final class DateTimePickerViewController: UIViewController {
         view.layoutIfNeeded()
     }
     
+
     override func viewDidLayoutSubviews() {
         let height = cancelButton.bounds.height + dateTimeFields.bounds.height + dateTimeOptions.bounds.height + 15 + 25 + 10
         preferredContentSize = CGSize(width: view.bounds.width, height: height)

@@ -41,8 +41,8 @@ final class DateTimeSettingView: UIView {
         NSLayoutConstraint.activate([
             icon.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
             icon.centerYAnchor.constraint(equalTo: centerYAnchor),
-            icon.widthAnchor.constraint(equalToConstant: 21),
-            icon.heightAnchor.constraint(equalToConstant: 23),
+            icon.widthAnchor.constraint(equalToConstant: 28),
+            icon.heightAnchor.constraint(equalToConstant: 28),
             
             titleLabel.leadingAnchor.constraint(equalTo: icon.trailingAnchor, constant: 20),
             titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
@@ -62,7 +62,7 @@ final class DateTimeSettingView: UIView {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = ""
-        label.font = .systemFont(ofSize: 17, weight: .light)
+        label.font = .systemFont(ofSize: 17, weight: .regular)
         return label
     }()
     

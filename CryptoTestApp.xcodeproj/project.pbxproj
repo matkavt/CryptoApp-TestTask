@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DB09664F289942B1008D278B /* CustomSheetNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB09664E289942B1008D278B /* CustomSheetNavigationController.swift */; };
 		DB1980972896E3AA00459C6C /* LiveLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1980962896E3AA00459C6C /* LiveLabelView.swift */; };
 		DB1980992896E83D00459C6C /* DateTimePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1980982896E83D00459C6C /* DateTimePickerViewController.swift */; };
 		DB19809C289704AE00459C6C /* CustomSheetTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB19809B289704AE00459C6C /* CustomSheetTransitionDelegate.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DB09664E289942B1008D278B /* CustomSheetNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSheetNavigationController.swift; sourceTree = "<group>"; };
 		DB1980962896E3AA00459C6C /* LiveLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveLabelView.swift; sourceTree = "<group>"; };
 		DB1980982896E83D00459C6C /* DateTimePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimePickerViewController.swift; sourceTree = "<group>"; };
 		DB19809B289704AE00459C6C /* CustomSheetTransitionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSheetTransitionDelegate.swift; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 				DB19809B289704AE00459C6C /* CustomSheetTransitionDelegate.swift */,
 				DB19809D289706A400459C6C /* CustomSheetPresentationController.swift */,
 				DB1980AA28988FAB00459C6C /* CustomSheetDismissalController.swift */,
+				DB09664E289942B1008D278B /* CustomSheetNavigationController.swift */,
 			);
 			path = Transitions;
 			sourceTree = "<group>";
@@ -205,6 +208,7 @@
 				DB1980A52897F94F00459C6C /* DateTimeModel.swift in Sources */,
 				DB1980A22897EB6700459C6C /* DateTimeSettingView.swift in Sources */,
 				DB19809C289704AE00459C6C /* CustomSheetTransitionDelegate.swift in Sources */,
+				DB09664F289942B1008D278B /* CustomSheetNavigationController.swift in Sources */,
 				DB1980A02897DBA700459C6C /* RoundedLabelView.swift in Sources */,
 				DB8C91962896675F0085C9A3 /* AppDelegate.swift in Sources */,
 				DB1980972896E3AA00459C6C /* LiveLabelView.swift in Sources */,
