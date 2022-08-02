@@ -83,12 +83,8 @@ final class DateTimePickerViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         let height = cancelButton.bounds.height + dateTimeFields.bounds.height + dateTimeOptions.bounds.height + 15 + 25 + 10
-        print("height \(height)")
-        
         preferredContentSize = CGSize(width: view.bounds.width, height: height)
     }
-    
-    
     
     private func updateDoneButton() {
         if let _ = dateChosen, let _ = timeChosen {
@@ -97,8 +93,6 @@ final class DateTimePickerViewController: UIViewController {
             doneButton.isEnabled = false
         }
     }
-    
-    
     
     private lazy var cancelButton: UIButton = {
         let button = UIButton()

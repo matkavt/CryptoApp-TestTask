@@ -150,4 +150,52 @@ final class CustomSheetPresentationController: UIPresentationController {
     
 }
 
+extension CustomSheetPresentationController: UIViewControllerAnimatedTransitioning {
+    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+        0.3
+    }
+    
+    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+        guard let sourceViewController = transitionContext.viewController(forKey: .from),
+              let destinationViewController = transitionContext.viewController(forKey: .to),
+              let sourceView = sourceViewController.view,
+              let destinationView = destinationViewController.view else {
+                  return
+              }
+        
+        let isPresenting = destinationViewController.isBeingPresented
+        let presentedView = isPresenting ? destinationView : sourceView
+        let containerView = transitionContext.containerView
+        
+        if isPresenting {
+            containerView.addSubview(destinationView)
+            destinationView.frame = containerView.bounds
+        }
+        
+        sourceView.layoutIfNeeded()
+        destinationView.layoutIfNeeded()
+        
+        let frameInContainer = frameOfPresentedViewInContainerView
+        let offScreenSize = CGRect(x: 0, y: containerView.bounds.height, width: sourceView.frame.width, height: sourceView.frame.height)
+        
+        presentedView.frame = isPresenting ? offScreenSize : frameInContainer
+        shadeView?.alpha = isPresenting ? 0 : 1
+        
+        let animations = {
+            presentedView.frame = isPresenting ? frameInContainer : offScreenSize
+            self.shadeView?.alpha = isPresenting ? 1 : 0
+            
+        }
+        
+        let completion = {(completed: Bool) in
+            transitionContext.completeTransition(completed && !transitionContext.transitionWasCancelled)
+        }
+        
+        let options: UIView.AnimationOptions = transitionContext.isInteractive ? .curveLinear : .curveEaseInOut
+        let transitionDuration = transitionDuration(using: transitionContext)
+        UIView.animate(withDuration: transitionDuration, delay: 0, options: options, animations: animations, completion: completion)
+    }
+    
+    
+}
 
