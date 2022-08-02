@@ -99,7 +99,7 @@ final class MainViewController: UIViewController {
     
     @objc private func showDateTimePicker() {
         customTransitioningDelegate = CustomSheetTransitionDelegate(presentationControllerFactory: self)
-        let destinationVC = DateTimePickerViewController()
+        let destinationVC = UINavigationController(rootViewController: DateTimePickerViewController())
         destinationVC.modalPresentationStyle = .custom
         destinationVC.transitioningDelegate = customTransitioningDelegate
         present(destinationVC, animated: true)

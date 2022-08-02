@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 
 final class DateTimePickerViewController: UIViewController {
-    private var initialOrientation: UIDeviceOrientation?
     private var dateChosen: Date? {
         didSet {
             if let dateChosen = dateChosen {
@@ -40,7 +39,6 @@ final class DateTimePickerViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         navigationController?.navigationBar.isHidden = true
-        initialOrientation = UIDevice.current.orientation
 
         view.addSubview(cancelButton)
         view.addSubview(sheetTitle)
@@ -81,21 +79,13 @@ final class DateTimePickerViewController: UIViewController {
         ])
         
         view.layoutIfNeeded()
-
-        
     }
     
     override func viewDidLayoutSubviews() {
-        
-        if UIDevice.current.orientation.isLandscape && !initialOrientation!.isLandscape || !UIDevice.current.orientation.isLandscape && initialOrientation!.isLandscape {
-            self.dismiss(animated: true)
-        }
-
-        let height = cancelButton.bounds.height + dateTimeFields.bounds.height + dateTimeOptions.bounds.height + 15 + 25 + 10 + 46
+        let height = cancelButton.bounds.height + dateTimeFields.bounds.height + dateTimeOptions.bounds.height + 15 + 25 + 10
         print("height \(height)")
         
         preferredContentSize = CGSize(width: view.bounds.width, height: height)
-
     }
     
     

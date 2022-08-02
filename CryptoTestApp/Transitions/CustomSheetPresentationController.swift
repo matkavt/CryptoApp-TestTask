@@ -72,6 +72,42 @@ final class CustomSheetPresentationController: UIPresentationController {
         calculateFrameForPresentedView()
     }
     
+    override func preferredContentSizeDidChange(forChildContentContainer container: UIContentContainer) {
+        updatePresentedView()
+        updateShadowView()
+    }
+    
+    private func updatePresentedView() {
+        guard let presentedView = presentedView else {
+            return
+        }
+        
+        let oldFrame = presentedView.frame
+        let newFrame = calculateFrameForPresentedView()
+        
+        if !oldFrame.equalTo(newFrame) {
+            presentedView.frame = newFrame
+        }
+        
+    }
+    
+    private func updateShadowView() {
+        guard let containerView = containerView else {
+            return
+        }
+        
+        guard let shadeView = shadeView else {
+            return
+        }
+        
+        let oldFrame = shadeView.frame
+        let newFrame = containerView.bounds
+        
+        if !oldFrame.equalTo(newFrame) {
+            shadeView.frame = newFrame
+        }
+    }
+    
     private func calculateFrameForPresentedView() -> CGRect{
         guard let containerView = containerView else {
             return .zero
