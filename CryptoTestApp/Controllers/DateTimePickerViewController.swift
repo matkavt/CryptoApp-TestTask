@@ -11,6 +11,7 @@ import UIKit
 final class DateTimePickerViewController: UIViewController {
     
     var receiverDelegate: DateTimeReceiverDelegate?
+    var labelConstraint: NSLayoutConstraint?
     
     var dateChosen: Date? {
         didSet {
@@ -105,9 +106,14 @@ final class DateTimePickerViewController: UIViewController {
         if let timeChosen = date {
             let format = DateFormatter()
             format.dateFormat = "HH:mm"
+            dateView.widthAnchor.constraint(lessThanOrEqualToConstant: 269).isActive = true
+            labelConstraint = timeView.widthAnchor.constraint(equalToConstant: 72)
+            labelConstraint?.isActive = true
             timeView.setText(text: format.string(from: timeChosen), color: .mainText, fontSize: 16, fontWeight: .regular)
         } else {
             timeView.setText(text: "Выберите время", color: .secondaryText, fontSize: 16, fontWeight: .regular)
+            timeView.widthAnchor.constraint(lessThanOrEqualToConstant: 170).isActive = true
+            labelConstraint?.isActive = false
         }
         
     }
@@ -169,8 +175,6 @@ final class DateTimePickerViewController: UIViewController {
         
         dateView.leadingAnchor.constraint(equalTo: stack.leadingAnchor).isActive = true
         timeView.trailingAnchor.constraint(equalTo: stack.trailingAnchor).isActive = true
-        timeView.widthAnchor.constraint(greaterThanOrEqualToConstant: 72).isActive = true
-        dateView.widthAnchor.constraint(lessThanOrEqualToConstant: 269).isActive = true
         dateView.widthAnchor.constraint(greaterThanOrEqualToConstant: 170).isActive = true
         
         stack.axis = .horizontal
