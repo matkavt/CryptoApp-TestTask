@@ -69,6 +69,7 @@ final class RoundedButton: UIView {
                 UIColor(red: 233/255, green: 115/255, blue: 74/255 , alpha: 1).cgColor
         ]]
                
+        gradient.locations = [0.0, 0.4, 0.6, 1.0]
         gradient.frame = bounds
         gradient.colors = gradientColorSet[0]
         gradient.cornerRadius = 10
@@ -76,7 +77,15 @@ final class RoundedButton: UIView {
         gradient.endPoint = CGPoint(x:1.0, y:0.0)
                
         layer.insertSublayer(gradient, at: 0)
+        let animation = CABasicAnimation(keyPath: "locations")
+        animation.fromValue = [-0.2, 0.2, 0.4, 0.8]
+        animation.toValue = [0, 0.5, 0.8, 1.0]
+        animation.repeatCount = .infinity
+        animation.autoreverses = true
+        animation.duration = 3
         
+                
+        gradient.add(animation, forKey: animation.keyPath)
 
     }
 }

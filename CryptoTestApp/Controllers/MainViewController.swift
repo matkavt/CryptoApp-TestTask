@@ -237,6 +237,7 @@ extension MainViewController: DateTimeReceiverDelegate {
                     cacheManager.saveETHCostToCache(dateTime: date, cost: currentCost)
                 }
             }
+            
         } else {
             isLive = true
             cacheManager.removeETHCostFromCache()
