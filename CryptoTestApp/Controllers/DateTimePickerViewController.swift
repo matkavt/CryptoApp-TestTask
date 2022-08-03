@@ -9,44 +9,39 @@ import Foundation
 import UIKit
 
 final class DateTimePickerViewController: UIViewController {
-    private var dateChosen: Date? {
+    
+    var receiverDelegate: DateTimeReceiverDelegate?
+    
+    var dateChosen: Date? {
         didSet {
-            if let dateChosen = dateChosen {
-                dateView.setText(text: Date.dateToLocalizedString(for: .ru, date: dateChosen), color: .black, fontSize: 16, fontWeight: .regular)
-            } else {
-                dateView.setText(text: "Выберите дату", color: UIColor(red: 124/255, green: 137/255, blue: 163/255, alpha: 1), fontSize: 16, fontWeight: .regular)
+            UIView.animate(withDuration: 0.2) {
+                self.updateDateView(with: self.dateChosen)
+                self.updateDoneButton()
             }
-            
-            updateDoneButton()
         }
     }
     
-    private var timeChosen: Date? {
+    var timeChosen: Date? {
         didSet {
-            let format = DateFormatter()
-            format.dateFormat = "HH:mm"
-            timeView.setText(text: format.string(from: timeChosen!), color: .black, fontSize: 16, fontWeight: .regular)
-            
-            updateDoneButton()
+            UIView.animate(withDuration: 0.2) { [self] in
+                updateTimeView(with: self.timeChosen)
+                updateDoneButton()
+                dateTimeOptions.setUpOptionsMenu(with: self.timeChosen)
+            }
         }
     }
-    
-    private var dateView = RoundedLabelView()
-    private var timeView = RoundedLabelView()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         navigationController?.navigationBar.isHidden = true
-
+        
         view.addSubview(cancelButton)
         view.addSubview(sheetTitle)
         view.addSubview(doneButton)
         view.addSubview(dateTimeFields)
         view.addSubview(dateTimeOptions)
-        
-        doneButton.isEnabled = false
         
         setUpConstraints()
         
@@ -81,11 +76,14 @@ final class DateTimePickerViewController: UIViewController {
         view.layoutIfNeeded()
     }
     
-
     override func viewDidLayoutSubviews() {
         let height = cancelButton.bounds.height + dateTimeFields.bounds.height + dateTimeOptions.bounds.height + 15 + 25 + 10
         preferredContentSize = CGSize(width: view.bounds.width, height: height)
     }
+    
+    
+    
+    // - MARK: Updating UI Elements
     
     private func updateDoneButton() {
         if let _ = dateChosen, let _ = timeChosen {
@@ -95,12 +93,38 @@ final class DateTimePickerViewController: UIViewController {
         }
     }
     
+    private func updateDateView(with date: Date?) {
+        if let dateChosen = date {
+            dateView.setText(text: Date.dateToLocalizedString(for: .ru, date: dateChosen, withHours: false), color: .black, fontSize: 16, fontWeight: .regular)
+        } else {
+            dateView.setText(text: "Выберите дату", color: UIColor(red: 124/255, green: 137/255, blue: 163/255, alpha: 1), fontSize: 16, fontWeight: .regular)
+        }
+    }
+    
+    private func updateTimeView(with date: Date?) {
+        if let timeChosen = date {
+            let format = DateFormatter()
+            format.dateFormat = "HH:mm"
+            timeView.setText(text: format.string(from: timeChosen), color: .black, fontSize: 16, fontWeight: .regular)
+        } else {
+            timeView.setText(text: "Выберите время", color: UIColor(red: 124/255, green: 137/255, blue: 163/255, alpha: 1), fontSize: 16, fontWeight: .regular)
+        }
+        
+    }
+    
+    
+    
+    // - MARK: UI Elements
+    
+    private var dateView = RoundedLabelView()
+    private var timeView = RoundedLabelView()
+    
     private lazy var cancelButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .system)
         let font = UIFont.systemFont(ofSize: 17, weight: .regular)
         let textColor = UIColor(red: 0, green: 80/255, blue: 207/255, alpha: 1)
         let title = NSAttributedString(string: "Отменить", attributes: [.font: font, .foregroundColor: textColor])
-      
+        
         button.setAttributedTitle(title, for: .normal)
         button.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
         
@@ -115,14 +139,15 @@ final class DateTimePickerViewController: UIViewController {
     }()
     
     private lazy var doneButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .system)
+        button.addTarget(self, action: #selector(dismissAndSave), for: .touchUpInside)
         let font = UIFont.systemFont(ofSize: 17, weight: .semibold)
         let textColorEnabled = UIColor(red: 0, green: 80/255, blue: 207/255, alpha: 1)
         let textColorDisabled = UIColor(red: 0, green: 80/255, blue: 207/255, alpha: 0.4)
-
+        
         let titleEnabled = NSAttributedString(string: "Готово", attributes: [.font: font, .foregroundColor: textColorEnabled])
         let titleDisabled = NSAttributedString(string: "Готово", attributes: [.font: font, .foregroundColor: textColorDisabled])
-      
+        
         button.setAttributedTitle(titleEnabled, for: .normal)
         button.setAttributedTitle(titleDisabled, for: .disabled)
         
@@ -138,19 +163,18 @@ final class DateTimePickerViewController: UIViewController {
         let secondTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(showTimePicker))
         timeView.addGestureRecognizer(secondTapRecognizer)
         
-        dateView.setText(text: "Выберите дату", color: textColor, fontSize: 16, fontWeight: .regular)
-        timeView.setText(text: "Выберите время", color: textColor, fontSize: 16, fontWeight: .regular)
-        
         let stack = UIStackView(arrangedSubviews: [dateView, timeView])
         
         stack.subviews.forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
-            $0.widthAnchor.constraint(greaterThanOrEqualToConstant: 72).isActive = true
             $0.topAnchor.constraint(equalTo: stack.topAnchor).isActive = true
         }
         
         dateView.leadingAnchor.constraint(equalTo: stack.leadingAnchor).isActive = true
         timeView.trailingAnchor.constraint(equalTo: stack.trailingAnchor).isActive = true
+        timeView.widthAnchor.constraint(greaterThanOrEqualToConstant: 72).isActive = true
+        dateView.widthAnchor.constraint(lessThanOrEqualToConstant: 269).isActive = true
+        dateView.widthAnchor.constraint(greaterThanOrEqualToConstant: 170).isActive = true
         
         stack.axis = .horizontal
         stack.spacing = 10
@@ -158,45 +182,27 @@ final class DateTimePickerViewController: UIViewController {
         return stack
     }()
     
-    private lazy var dateTimeOptions: UIStackView = {
-        let todaySetting = DateTimeSettingView()
-        todaySetting.setUpTimeSetting(for: Date.now, with: UIImage(named: "todayImage"), title: "Сегодня", showWeekDay: true)
+    private lazy var dateTimeOptions: DateTimeOptionsMenuView = {
         
-        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(chooseTodayDate))
-        todaySetting.addGestureRecognizer(tapRecognizer)
+        let today = UITapGestureRecognizer(target: self, action: #selector(chooseTodayDate))
+        let yesterday = UITapGestureRecognizer(target: self, action: #selector(chooseYesterdayDate))
+        let previousWeek = UITapGestureRecognizer(target: self, action: #selector(choosePreviousWeekDate))
+        let live = UITapGestureRecognizer(target: self, action: #selector(chooseLive))
         
-        let yesterdaySetting = DateTimeSettingView()
-        yesterdaySetting.setUpTimeSetting(for: Date.yesterday, with: UIImage(named: "yesterdayImage"), title: "Вчера", showWeekDay: true)
+        let optionsMenu = DateTimeOptionsMenuView()
+        optionsMenu.initializeMenu(todayTapRecognizer: today, yesterdayTapRecognizer: yesterday, previousWeekTapRecognizer: previousWeek, liveTapRecognizer: live)
         
-        let secondTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(chooseYesterdayDate))
-        yesterdaySetting.addGestureRecognizer(secondTapRecognizer)
-        
-        
-        let previousWeekSetting = DateTimeSettingView()
-        previousWeekSetting.setUpTimeSetting(for: Date.previousWeek, with: UIImage(named: "lastWeekImage"), title: "Предыдущая неделя", showWeekDay: true)
-        
-        let thirdTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(choosePreviousWeekDate))
-        previousWeekSetting.addGestureRecognizer(thirdTapRecognizer)
-        
-        let liveSetting = DateTimeSettingView()
-        liveSetting.setUpTimeSetting(for: Date.now, with: UIImage(named: "liveImage"), title: "Текущие дата и время", showWeekDay: false)
-        
-        let fourthTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(chooseLive))
-        liveSetting.addGestureRecognizer(fourthTapRecognizer)
-        
-        
-        let stack = UIStackView(arrangedSubviews: [todaySetting, yesterdaySetting, previousWeekSetting, liveSetting])
-        
-        stack.subviews.forEach {
+        optionsMenu.subviews.forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             $0.heightAnchor.constraint(equalToConstant: 48).isActive = true
         }
         
-        stack.axis = .vertical
-        stack.spacing = 0
-        stack.distribution = .fillEqually
-        return stack
+        optionsMenu.setUpOptionsMenu(with: timeChosen)
+        return optionsMenu
     }()
+    
+    
+    // - MARK: UI Actions
     
     @objc func chooseTodayDate() {
         dateChosen = Date.now
@@ -212,79 +218,60 @@ final class DateTimePickerViewController: UIViewController {
     
     @objc func chooseLive() {
         dateChosen = nil
+        timeChosen = nil
+        
+        receiverDelegate?.receiveDate(nil)
+        self.dismiss(animated: true)
     }
     
     @objc func showCalendar() {
-        navigationController?.fadeTo(CalendarViewController())
+        let vc = CalendarViewController()
+        vc.dateReceiver = self
+        if let dateChosen = dateChosen {
+            vc.previousDate = dateChosen
+        }
+        navigationController?.fadeTo(vc)
     }
     
     @objc func showTimePicker() {
-        navigationController?.fadeTo(TimePickerViewController())
+        let vc = TimePickerViewController()
+        vc.timeReceiver = self
+        if let timeChosen = timeChosen {
+            vc.previousTime = timeChosen
+        }
+        navigationController?.fadeTo(vc)
+    }
+    
+    @objc func dismissAndSave() {
+        if let dateChosen = dateChosen, let timeChosen = timeChosen {
+            let calendar = Calendar(identifier: .gregorian)
+            
+            let hourComponent = calendar.component(.hour, from: timeChosen)
+            let minuteComponent = calendar.component(.minute, from: timeChosen)
+            
+            let date = calendar.date(bySettingHour: hourComponent, minute: minuteComponent, second: 0, of: dateChosen)
+            receiverDelegate?.receiveDate(date)
+            self.dismiss(animated: true)
+            
+        }
     }
     
     @objc func dismissView() {
         self.dismiss(animated: true)
     }
-                                                   
+    
 }
 
-extension Date {
-    
-    enum Localization {
-        case ru
+// - MARK: DateTimePickerViewController implements delegate to receive data from previous screens
+
+
+extension DateTimePickerViewController: DateTimeReceiverDelegate {
+    func receiveTime(_ time: Date?) {
+        self.timeChosen = time
     }
     
-    
-    static func dateToLocalizedString(for locale: Localization, date: Date) -> String {
-        let calendar = Calendar(identifier: .gregorian)
-        let month = calendar.component(Calendar.Component.month, from: date)
-        let weekday = calendar.component(Calendar.Component.weekday, from: date)
-        let day = calendar.component(Calendar.Component.day, from: date)
-        let year = calendar.component(Calendar.Component.year, from: date)
-        
-        switch(locale) {
-        case .ru:
-            let monthNames = [
-                "янв",
-                "фев",
-                "мар",
-                "апр",
-                "мая",
-                "июня",
-                "июля",
-                "авг",
-                "сен",
-                "окт",
-                "ноя",
-                "дек"
-            ]
-            
-            return "\(day) \(monthNames[month-1]). \(year) г., \(Date.getWeekdayLocalizedRussian(by: weekday)!)"
-        }
+    func receiveDate(_ date: Date?) {
+        self.dateChosen = date
     }
 }
 
-extension Date {
-    static var yesterday: Date { return Date().dayBefore }
-    static var tomorrow:  Date { return Date().dayAfter }
-    
-    var dayBefore: Date {
-        return Calendar.current.date(byAdding: .day, value: -1, to: noon)!
-    }
-    var dayAfter: Date {
-        return Calendar.current.date(byAdding: .day, value: 1, to: noon)!
-    }
-    var noon: Date {
-        return Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: self)!
-    }
-    var month: Int {
-        return Calendar.current.component(.month,  from: self)
-    }
-    var isLastDayOfMonth: Bool {
-        return dayAfter.month != month
-    }
-    static var previousWeek: Date {
-        return Calendar.current.date(byAdding: .day, value: -7, to: Date())!
-    }
-    
-}

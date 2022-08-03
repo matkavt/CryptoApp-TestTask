@@ -7,14 +7,14 @@
 
 import Foundation
 
-class ETHLiveResource: APIResource {
+final class ETHLiveResource: APIResource {
     typealias ModelType = ETHCostResponse
     
     var time: String?
 
 }
 
-class ETHHistoricalResource: APIResource {
+final class ETHHistoricalResource: APIResource {
     typealias ModelType = ETHCostResponseForTime
     
     var time: String?

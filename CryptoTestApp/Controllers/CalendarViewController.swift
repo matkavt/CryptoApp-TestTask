@@ -10,7 +10,16 @@ import UIKit
 
 final class CalendarViewController: UIViewController {
     
-    private var previousDate: Date?
+    var previousDate: Date? {
+        didSet {
+            if let _ = previousDate {
+                deleteButton.isEnabled = true
+
+            }
+        }
+    }
+    
+    var dateReceiver: DateTimeReceiverDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +30,10 @@ final class CalendarViewController: UIViewController {
         view.addSubview(deleteButton)
         view.addSubview(calendarView)
         
-        deleteButton.isEnabled = false
+        if let _ = previousDate { deleteButton.isEnabled = true } else {
+            deleteButton.isEnabled = false
+        }
+        
         setUpConstraints()
     }
     
@@ -59,7 +71,7 @@ final class CalendarViewController: UIViewController {
     }
     
     private lazy var cancelButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .system)
         let font = UIFont.systemFont(ofSize: 17, weight: .regular)
         let textColor = UIColor(red: 0, green: 80/255, blue: 207/255, alpha: 1)
         let title = NSAttributedString(string: "Отменить", attributes: [.font: font, .foregroundColor: textColor])
@@ -80,13 +92,14 @@ final class CalendarViewController: UIViewController {
     }()
     
     private lazy var deleteButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .system)
         let font = UIFont.systemFont(ofSize: 17, weight: .semibold)
         let textColorEnabled = UIColor(red: 230/255, green: 70/255, blue: 70/255, alpha: 1)
         let textColorDisabled = UIColor(red: 230/255, green: 70/255, blue: 70/255, alpha: 0.4)
 
         let titleEnabled = NSAttributedString(string: "Удалить", attributes: [.font: font, .foregroundColor: textColorEnabled])
         let titleDisabled = NSAttributedString(string: "Удалить", attributes: [.font: font, .foregroundColor: textColorDisabled])
+        button.addTarget(self, action: #selector(deleteSelection), for: .touchUpInside)
       
         button.setAttributedTitle(titleEnabled, for: .normal)
         button.setAttributedTitle(titleDisabled, for: .disabled)
@@ -98,6 +111,7 @@ final class CalendarViewController: UIViewController {
         let datePicker = UIDatePicker()
         datePicker.preferredDatePickerStyle = .inline
         datePicker.datePickerMode = .date
+        datePicker.addTarget(self, action: #selector(updateSelection), for: .valueChanged)
         
         if let previousDate = previousDate {
             datePicker.date = previousDate
@@ -107,7 +121,24 @@ final class CalendarViewController: UIViewController {
     }()
     
     @objc func dismissCalendar() {
+        dateReceiver?.receiveDate(previousDate == nil ? nil : previousDate)
         navigationController?.fadeToRootViewController(self)
     }
+    
+    @objc func deleteSelection() {
+        dateReceiver?.receiveDate(nil)
+        navigationController?.fadeToRootViewController(self)
+    }
+    
+    @objc func updateSelection() {
+        if previousDate != calendarView.date {
+            dateReceiver?.receiveDate(calendarView.date)
+            navigationController?.fadeToRootViewController(self)
+        }
+        
+
+    }
 }
+
+
 

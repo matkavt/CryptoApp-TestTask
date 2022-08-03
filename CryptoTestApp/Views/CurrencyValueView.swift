@@ -10,11 +10,14 @@ import UIKit
 
 final class CurrencyValueView: UIStackView {
     
-    let excangeCount = 1
-    var excangeResult = 0.0 {
+    let exchangeCount = 1
+    var exchangeResult = 0.0 {
         didSet {
             if oldValue == 0.0 { resultLabel.alpha = 1 }
-            resultLabel.text = "= \(excangeResult) $"
+            
+            UIView.animate(withDuration: 0.2) { [self] in
+                self.resultLabel.text = "= \(exchangeResult) $"
+            }
         }
     }
     
@@ -36,7 +39,7 @@ final class CurrencyValueView: UIStackView {
     
     private lazy var amountToExcange: UILabel = {
         let label = UILabel()
-        label.text = String(excangeCount)
+        label.text = String(exchangeCount)
         label.font = .systemFont(ofSize: 24, weight: .semibold)
         return label
     }()
@@ -51,7 +54,7 @@ final class CurrencyValueView: UIStackView {
     
     private lazy var resultLabel: UILabel = {
         let label = UILabel()
-        label.text = " = \(excangeResult) $"
+        label.text = " = \(exchangeResult) $"
         label.alpha = 0.5
         label.font = .systemFont(ofSize: 24, weight: .semibold)
         return label

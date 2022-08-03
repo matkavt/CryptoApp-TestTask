@@ -9,20 +9,21 @@ import Foundation
 import UIKit
 
 final class DateTimeSettingView: UIView {
-    private var timeSetting: Date? {
-        didSet {
-            let calendar = Calendar(identifier: .gregorian)
-            let dayOfTheWeek = calendar.component(.weekday, from: timeSetting!)
-            
+
+    func setUpTimeSetting(for date: Date, for time: Date?, with icon: UIImage?, title: String, showWeekDay: Bool) {
+        let calendar = Calendar(identifier: .gregorian)
+        let dayOfTheWeek = calendar.component(.weekday, from: date)
+        let format = DateFormatter()
+        format.dateFormat = "HH:mm"
+        
+        if let time = time {
+            dateLabel.text = "\(Date.getWeekdayLocalizedRussian(by: dayOfTheWeek)!), \(format.string(from: time))"
+        } else {
             dateLabel.text = Date.getWeekdayLocalizedRussian(by: dayOfTheWeek)!
         }
-    }
-    
-    func setUpTimeSetting(for dateTime: Date, with icon: UIImage?, title: String, showWeekDay: Bool) {
-        timeSetting = dateTime
+        
         self.icon.image = icon
         titleLabel.text = title
-        
         if !showWeekDay {
             dateLabel.isHidden = true
         }
@@ -70,28 +71,10 @@ final class DateTimeSettingView: UIView {
         let textColor = UIColor(red: 124/255, green: 137/255, blue: 163/255, alpha: 1)
         let label = UILabel()
         label.text = ""
-        label.font = .systemFont(ofSize: 17, weight: .light)
+        label.font = .systemFont(ofSize: 17, weight: .regular)
         label.textColor = textColor
         return label
     }()
     
 }
 
-extension Date {
-    static func getWeekdayLocalizedRussian(by index: Int) -> String? {
-        
-        guard index < 8 else { return nil }
-        
-        let names = [
-            "Вс",
-            "Пн",
-            "Вт",
-            "Ср",
-            "Чт",
-            "Пт",
-            "Сб",
-        ]
-        
-        return names[index-1]
-    }
-}

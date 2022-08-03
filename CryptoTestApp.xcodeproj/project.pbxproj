@@ -14,13 +14,21 @@
 		DB09665A28998656008D278B /* APIResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB09665928998656008D278B /* APIResource.swift */; };
 		DB09665C28998B01008D278B /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB09665B28998B01008D278B /* NetworkManager.swift */; };
 		DB09665E28998BFC008D278B /* ETHResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB09665D28998BFC008D278B /* ETHResource.swift */; };
+		DB0966602899BC16008D278B /* DateTimeReceiverDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB09665F2899BC16008D278B /* DateTimeReceiverDelegate.swift */; };
+		DB0966632899BCA0008D278B /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0966622899BCA0008D278B /* DateExtensions.swift */; };
+		DB096666289A5C72008D278B /* GenericCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB096665289A5C71008D278B /* GenericCacheManager.swift */; };
+		DB096668289A5D18008D278B /* ETHCostDateTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB096667289A5D18008D278B /* ETHCostDateTime.swift */; };
+		DB09666A289A5E7F008D278B /* CacheResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB096669289A5E7F008D278B /* CacheResource.swift */; };
+		DB09666C289A5F64008D278B /* CostCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB09666B289A5F64008D278B /* CostCacheManager.swift */; };
+		DB09666E289A61C2008D278B /* ETHCacheResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB09666D289A61C2008D278B /* ETHCacheResource.swift */; };
+		DB096670289A6330008D278B /* ETHCostCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB09666F289A6330008D278B /* ETHCostCache.swift */; };
+		DB096672289AA4EE008D278B /* DateTimeOptionsMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB096671289AA4ED008D278B /* DateTimeOptionsMenuView.swift */; };
 		DB1980972896E3AA00459C6C /* LiveLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1980962896E3AA00459C6C /* LiveLabelView.swift */; };
 		DB1980992896E83D00459C6C /* DateTimePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1980982896E83D00459C6C /* DateTimePickerViewController.swift */; };
 		DB19809C289704AE00459C6C /* CustomSheetTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB19809B289704AE00459C6C /* CustomSheetTransitionDelegate.swift */; };
 		DB19809E289706A400459C6C /* CustomSheetPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB19809D289706A400459C6C /* CustomSheetPresentationController.swift */; };
 		DB1980A02897DBA700459C6C /* RoundedLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB19809F2897DBA600459C6C /* RoundedLabelView.swift */; };
 		DB1980A22897EB6700459C6C /* DateTimeSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1980A12897EB6700459C6C /* DateTimeSettingView.swift */; };
-		DB1980A52897F94F00459C6C /* DateTimeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1980A42897F94F00459C6C /* DateTimeModel.swift */; };
 		DB1980A728984BC300459C6C /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1980A628984BC200459C6C /* CalendarViewController.swift */; };
 		DB1980A928985B7600459C6C /* TimePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1980A828985B7600459C6C /* TimePickerViewController.swift */; };
 		DB1980AB28988FAB00459C6C /* CustomSheetDismissalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1980AA28988FAB00459C6C /* CustomSheetDismissalController.swift */; };
@@ -41,13 +49,21 @@
 		DB09665928998656008D278B /* APIResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResource.swift; sourceTree = "<group>"; };
 		DB09665B28998B01008D278B /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		DB09665D28998BFC008D278B /* ETHResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETHResource.swift; sourceTree = "<group>"; };
+		DB09665F2899BC16008D278B /* DateTimeReceiverDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeReceiverDelegate.swift; sourceTree = "<group>"; };
+		DB0966622899BCA0008D278B /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
+		DB096665289A5C71008D278B /* GenericCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericCacheManager.swift; sourceTree = "<group>"; };
+		DB096667289A5D18008D278B /* ETHCostDateTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETHCostDateTime.swift; sourceTree = "<group>"; };
+		DB096669289A5E7F008D278B /* CacheResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheResource.swift; sourceTree = "<group>"; };
+		DB09666B289A5F64008D278B /* CostCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostCacheManager.swift; sourceTree = "<group>"; };
+		DB09666D289A61C2008D278B /* ETHCacheResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETHCacheResource.swift; sourceTree = "<group>"; };
+		DB09666F289A6330008D278B /* ETHCostCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETHCostCache.swift; sourceTree = "<group>"; };
+		DB096671289AA4ED008D278B /* DateTimeOptionsMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeOptionsMenuView.swift; sourceTree = "<group>"; };
 		DB1980962896E3AA00459C6C /* LiveLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveLabelView.swift; sourceTree = "<group>"; };
 		DB1980982896E83D00459C6C /* DateTimePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimePickerViewController.swift; sourceTree = "<group>"; };
 		DB19809B289704AE00459C6C /* CustomSheetTransitionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSheetTransitionDelegate.swift; sourceTree = "<group>"; };
 		DB19809D289706A400459C6C /* CustomSheetPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSheetPresentationController.swift; sourceTree = "<group>"; };
 		DB19809F2897DBA600459C6C /* RoundedLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedLabelView.swift; sourceTree = "<group>"; };
 		DB1980A12897EB6700459C6C /* DateTimeSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeSettingView.swift; sourceTree = "<group>"; };
-		DB1980A42897F94F00459C6C /* DateTimeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeModel.swift; sourceTree = "<group>"; };
 		DB1980A628984BC200459C6C /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		DB1980A828985B7600459C6C /* TimePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerViewController.swift; sourceTree = "<group>"; };
 		DB1980AA28988FAB00459C6C /* CustomSheetDismissalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSheetDismissalController.swift; sourceTree = "<group>"; };
@@ -85,6 +101,26 @@
 			path = Networking;
 			sourceTree = "<group>";
 		};
+		DB0966612899BC8D008D278B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				DB0966622899BCA0008D278B /* DateExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		DB096664289A5BDA008D278B /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				DB096665289A5C71008D278B /* GenericCacheManager.swift */,
+				DB096669289A5E7F008D278B /* CacheResource.swift */,
+				DB09666B289A5F64008D278B /* CostCacheManager.swift */,
+				DB09666D289A61C2008D278B /* ETHCacheResource.swift */,
+				DB09666F289A6330008D278B /* ETHCostCache.swift */,
+			);
+			path = Cache;
+			sourceTree = "<group>";
+		};
 		DB19809A2897047700459C6C /* Transitions */ = {
 			isa = PBXGroup;
 			children = (
@@ -99,8 +135,8 @@
 		DB1980A32897F93B00459C6C /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				DB1980A42897F94F00459C6C /* DateTimeModel.swift */,
 				DB096652289972DB008D278B /* ETHCostResponse.swift */,
+				DB096667289A5D18008D278B /* ETHCostDateTime.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -124,11 +160,13 @@
 		DB8C91942896675F0085C9A3 /* CryptoTestApp */ = {
 			isa = PBXGroup;
 			children = (
+				DB0966612899BC8D008D278B /* Extensions */,
+				DB096664289A5BDA008D278B /* Cache */,
 				DB096654289980F5008D278B /* Networking */,
 				DB1980A32897F93B00459C6C /* Models */,
-				DB19809A2897047700459C6C /* Transitions */,
 				DB8C91AC28966F110085C9A3 /* Views */,
 				DB8C91A9289669660085C9A3 /* Controllers */,
+				DB19809A2897047700459C6C /* Transitions */,
 				DB8C91952896675F0085C9A3 /* AppDelegate.swift */,
 				DB8C91972896675F0085C9A3 /* SceneDelegate.swift */,
 				DB8C919E289667660085C9A3 /* Assets.xcassets */,
@@ -145,6 +183,7 @@
 				DB1980982896E83D00459C6C /* DateTimePickerViewController.swift */,
 				DB1980A628984BC200459C6C /* CalendarViewController.swift */,
 				DB1980A828985B7600459C6C /* TimePickerViewController.swift */,
+				DB09665F2899BC16008D278B /* DateTimeReceiverDelegate.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -157,6 +196,7 @@
 				DB1980962896E3AA00459C6C /* LiveLabelView.swift */,
 				DB19809F2897DBA600459C6C /* RoundedLabelView.swift */,
 				DB1980A12897EB6700459C6C /* DateTimeSettingView.swift */,
+				DB096671289AA4ED008D278B /* DateTimeOptionsMenuView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -231,25 +271,33 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DB1980A52897F94F00459C6C /* DateTimeModel.swift in Sources */,
 				DB09665E28998BFC008D278B /* ETHResource.swift in Sources */,
+				DB0966602899BC16008D278B /* DateTimeReceiverDelegate.swift in Sources */,
 				DB1980A22897EB6700459C6C /* DateTimeSettingView.swift in Sources */,
 				DB19809C289704AE00459C6C /* CustomSheetTransitionDelegate.swift in Sources */,
+				DB0966632899BCA0008D278B /* DateExtensions.swift in Sources */,
 				DB09665C28998B01008D278B /* NetworkManager.swift in Sources */,
+				DB09666E289A61C2008D278B /* ETHCacheResource.swift in Sources */,
+				DB096672289AA4EE008D278B /* DateTimeOptionsMenuView.swift in Sources */,
 				DB09664F289942B1008D278B /* CustomSheetNavigationController.swift in Sources */,
 				DB096656289982AF008D278B /* APIRequestProtocol.swift in Sources */,
 				DB1980A02897DBA700459C6C /* RoundedLabelView.swift in Sources */,
 				DB8C91962896675F0085C9A3 /* AppDelegate.swift in Sources */,
 				DB1980972896E3AA00459C6C /* LiveLabelView.swift in Sources */,
+				DB096668289A5D18008D278B /* ETHCostDateTime.swift in Sources */,
 				DB1980A928985B7600459C6C /* TimePickerViewController.swift in Sources */,
 				DB8C91982896675F0085C9A3 /* SceneDelegate.swift in Sources */,
+				DB09666C289A5F64008D278B /* CostCacheManager.swift in Sources */,
+				DB096666289A5C72008D278B /* GenericCacheManager.swift in Sources */,
 				DB19809E289706A400459C6C /* CustomSheetPresentationController.swift in Sources */,
 				DB1980A728984BC300459C6C /* CalendarViewController.swift in Sources */,
 				DB8C91B0289687230085C9A3 /* CurrencyValueView.swift in Sources */,
 				DB8C91AE28966F300085C9A3 /* RoundedButton.swift in Sources */,
 				DB0966582899850D008D278B /* ETHCostRequest.swift in Sources */,
+				DB09666A289A5E7F008D278B /* CacheResource.swift in Sources */,
 				DB1980AB28988FAB00459C6C /* CustomSheetDismissalController.swift in Sources */,
 				DB096653289972DB008D278B /* ETHCostResponse.swift in Sources */,
+				DB096670289A6330008D278B /* ETHCostCache.swift in Sources */,
 				DB8C91AB289669A10085C9A3 /* MainViewController.swift in Sources */,
 				DB09665A28998656008D278B /* APIResource.swift in Sources */,
 				DB1980992896E83D00459C6C /* DateTimePickerViewController.swift in Sources */,

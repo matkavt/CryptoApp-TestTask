@@ -10,7 +10,12 @@ import UIKit
 
 final class TimePickerViewController: UIViewController {
     
-    private var previousTime: Date?
+    var timeReceiver: DateTimeReceiverDelegate?
+    var previousTime: Date? {
+        didSet {
+            deleteButton.isEnabled = true
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +27,10 @@ final class TimePickerViewController: UIViewController {
         view.addSubview(timeView)
         view.addSubview(chooseButton)
         
-        deleteButton.isEnabled = false
+        if let _ = previousTime { deleteButton.isEnabled = true } else {
+            deleteButton.isEnabled = false
+        }
+        
         setUpConstraints()
     }
     
@@ -62,7 +70,7 @@ final class TimePickerViewController: UIViewController {
     }
     
     private lazy var cancelButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .system)
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissPicker))
         button.addGestureRecognizer(tapRecognizer)
         
@@ -83,7 +91,10 @@ final class TimePickerViewController: UIViewController {
     }()
     
     private lazy var deleteButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .system)
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(deleteSelection))
+        button.addGestureRecognizer(tapRecognizer)
+        
         let font = UIFont.systemFont(ofSize: 17, weight: .semibold)
         let textColorEnabled = UIColor(red: 230/255, green: 70/255, blue: 70/255, alpha: 1)
         let textColorDisabled = UIColor(red: 230/255, green: 70/255, blue: 70/255, alpha: 0.4)
@@ -115,13 +126,26 @@ final class TimePickerViewController: UIViewController {
         let roundedButton = RoundedButton()
         roundedButton.setText(text: "Выбрать", color: .white, fontSize: 17, fontWeight: .medium)
         roundedButton.setBackgroundColor(UIColor(red: 0, green: 80/255, blue: 207/255, alpha: 1))
-        
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(updateSelection))
+        roundedButton.addGestureRecognizer(tapRecognizer)
         return roundedButton
         
     }()
     
     @objc func dismissPicker() {
+        timeReceiver?.receiveTime(previousTime == nil ? nil : previousTime)
         navigationController?.fadeToRootViewController(self)
     }
+    
+    @objc func deleteSelection() {
+        timeReceiver?.receiveTime(nil)
+        navigationController?.fadeToRootViewController(self)
+    }
+    
+    @objc func updateSelection() {
+        timeReceiver?.receiveTime(timeView.date)
+        navigationController?.fadeToRootViewController(self)
+    }
+    
     
 }

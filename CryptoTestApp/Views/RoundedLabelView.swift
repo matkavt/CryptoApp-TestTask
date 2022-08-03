@@ -36,6 +36,7 @@ final class RoundedLabelView: UIView {
         ])
         
     }
+
     
     private lazy var textLabel: UILabel = {
         let label = UILabel()

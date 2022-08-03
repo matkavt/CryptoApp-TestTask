@@ -12,29 +12,39 @@ import UIKit
 
 final class MainViewController: UIViewController {
     
-    private var isLive = false
-    private var currentCost: Double = 0.0 {
-        didSet {
-            currencyView.excangeResult = currentCost
-        }
-    }
+    private var customTransitioningDelegate: UIViewControllerTransitioningDelegate?
+    private let networkManager = NetworkManager()
+    private let cacheManager = ETHCostCache()
     
-    private var savedDate: Date? = Date() {
+    private var isLive = true {
         didSet {
-            if let savedDate = savedDate {
-                isLive = false
-                liveLabel.isHidden = true
-                getCost(by: savedDate)
-            } else {
-                isLive = true
-                liveLabel.isHidden = false
+            liveLabel.isHidden = !isLive
+            if isLive {
                 startTimer()
             }
         }
     }
     
-    private var customTransitioningDelegate: UIViewControllerTransitioningDelegate?
-    private let networkManager = NetworkManager()
+    private var currentCost: Double? {
+        didSet {
+            if let currentCost = currentCost {
+                currencyView.exchangeResult = currentCost
+            } else {
+                currencyView.exchangeResult = 0.0
+            }
+        }
+    }
+    
+    private var savedDate: Date? {
+        didSet {
+            if let savedDate = savedDate {
+                dateTimeFieldView.setText(text: Date.dateToLocalizedString(for: .ru, date: savedDate, withHours: true), color: .black, fontSize: 16, fontWeight: .regular)
+            } else {
+                dateTimeFieldView.setText(text: "Cейчас", color: .black, fontSize: 16, fontWeight: .regular)
+            }
+        }
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,20 +54,13 @@ final class MainViewController: UIViewController {
         view.addSubview(dateTimeFieldView)
         view.addSubview(dateTimePickerButton)
         view.addSubview(currencyView)
+        view.addSubview(liveLabel)
+        setUpConstraints()
         
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(showDateTimePicker))
         dateTimePickerButton.addGestureRecognizer(tapRecognizer)
         
-        setUpConstraints()
-        view.addSubview(liveLabel)
-        setUpLiveLabel()
-        
-        if isLive {
-            startTimer()
-        } else {
-            getCost(by: savedDate!)
-            liveLabel.isHidden = true
-        }
+        getFromCache()
     }
     
     
@@ -82,19 +85,14 @@ final class MainViewController: UIViewController {
             dateTimePickerButton.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -16),
             
             currencyView.topAnchor.constraint(equalTo: dateTimePickerButton.bottomAnchor, constant: 44),
-            currencyView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            currencyView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            liveLabel.topAnchor.constraint(equalTo: dateTimePickerButton.bottomAnchor, constant: 36),
+            liveLabel.leadingAnchor.constraint(equalTo: currencyView.trailingAnchor, constant: 4),
             
         ])
     }
     
-    private func setUpLiveLabel() {
-        liveLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            liveLabel.topAnchor.constraint(equalTo: dateTimePickerButton.bottomAnchor, constant: 36),
-            liveLabel.leadingAnchor.constraint(equalTo: currencyView.trailingAnchor, constant: 4),
-        ])
-        
-    }
     
     private func startTimer() {
         Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
@@ -119,6 +117,29 @@ final class MainViewController: UIViewController {
         }
     }
     
+    private func saveToCache() {
+        DispatchQueue.main.async { [self] in
+            if let dateTime = savedDate, let cost = currentCost {
+                self.cacheManager.saveETHCostToCache(dateTime: dateTime, cost: cost)
+            }
+        }
+    }
+    
+    private func getFromCache() {
+        DispatchQueue.main.async { [self] in
+            let data = cacheManager.getETHCostFromCache()
+
+            if let savedDate = data?.0, let currentCost = data?.1 {
+                self.isLive = false
+                self.savedDate = savedDate
+                self.currentCost = currentCost
+            } else {
+                self.isLive = true
+                self.savedDate = nil
+            }
+        }
+    }
+    
     private lazy var appTitleLabel: UILabel = {
         let label = UILabel()
         label.text = "Тестовое задание"
@@ -130,7 +151,6 @@ final class MainViewController: UIViewController {
     
     private lazy var dateTimeFieldView: RoundedLabelView = {
         let roundedLabel = RoundedLabelView()
-        roundedLabel.setText(text: "Cейчас", color: .black, fontSize: 16, fontWeight: .regular)
         return roundedLabel
     }()
     
@@ -147,7 +167,11 @@ final class MainViewController: UIViewController {
     
     @objc private func showDateTimePicker() {
         customTransitioningDelegate = CustomSheetTransitionDelegate(presentationControllerFactory: self)
-        let destinationVC = CustomSheetNavigationController(rootViewController: DateTimePickerViewController())
+        let vc = DateTimePickerViewController()
+        vc.receiverDelegate = self
+        vc.dateChosen = savedDate
+        vc.timeChosen = savedDate
+        let destinationVC = CustomSheetNavigationController(rootViewController: vc)
         destinationVC.modalPresentationStyle = .custom
         destinationVC.transitioningDelegate = customTransitioningDelegate
         present(destinationVC, animated: true)
@@ -159,12 +183,37 @@ extension MainViewController: CustomSheetPresentationControllerFactory {
         .init(presentedViewController: presentedViewController, presentingViewController: presentingViewController, dismissalHandler: self)
     }
     
-    
 }
 
 extension MainViewController: CustomSheetDismissalController {
     func performDismissal(animated: Bool) {
         presentedViewController?.dismiss(animated: animated)
+    }
+    
+}
+
+extension MainViewController: DateTimeReceiverDelegate {
+    func receiveDate(_ date: Date?) {
+
+        savedDate = date
+        
+        if let date = date {
+            isLive = false
+            DispatchQueue.main.async { [self] in
+                getCost(by: date)
+                
+                if let currentCost = currentCost {
+                    cacheManager.saveETHCostToCache(dateTime: date, cost: currentCost)
+                }
+            }
+        } else {
+            isLive = true
+            cacheManager.removeETHCostFromCache()
+        }
+    }
+    
+    func receiveTime(_ time: Date?) {
+        return
     }
     
     
