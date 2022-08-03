@@ -40,6 +40,7 @@ final class CurrencyValueView: UIStackView {
     private lazy var amountToExcange: UILabel = {
         let label = UILabel()
         label.text = String(exchangeCount)
+        label.textColor = .mainText
         label.font = .systemFont(ofSize: 24, weight: .semibold)
         return label
     }()
@@ -55,7 +56,7 @@ final class CurrencyValueView: UIStackView {
     private lazy var resultLabel: UILabel = {
         let label = UILabel()
         label.text = " = \(exchangeResult) $"
-        label.alpha = 0.5
+        label.textColor = .mainText
         label.font = .systemFont(ofSize: 24, weight: .semibold)
         return label
     }()

@@ -11,6 +11,7 @@ import UIKit
 final class RoundedButton: UIView {
     
     private let gradient = CAGradientLayer()
+    private var isTapped = false
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -29,7 +30,6 @@ final class RoundedButton: UIView {
     }
     
     private func setUp() {
-        // TODO: Make resource file with all the colors
         layer.cornerRadius = 10
         
         textLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -57,10 +57,6 @@ final class RoundedButton: UIView {
         textLabel.font = .systemFont(ofSize: fontSize, weight: fontWeight)
     }
     
-    func setBackgroundColor(_ color: UIColor) {
-        backgroundColor = color
-    }
-    
     func setUpGradient() {
         let gradientColorSet = [[
                 UIColor(red: 89/255, green: 156/255, blue: 1, alpha: 1).cgColor,
@@ -86,6 +82,28 @@ final class RoundedButton: UIView {
         
                 
         gradient.add(animation, forKey: animation.keyPath)
-
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        isTapped = true
+        alpha = 0.7
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if isTapped {
+            UIView.animate(withDuration: 0.1, delay: 0.1, animations: {
+                self.alpha = 1
+            })
+            
+        }
+    }
+    
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if isTapped {
+            UIView.animate(withDuration: 0.1, delay: 0.1, animations: {
+                self.alpha = 1
+            })
+            
+        }
     }
 }

@@ -34,7 +34,7 @@ final class DateTimePickerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = .background
         navigationController?.navigationBar.isHidden = true
         
         view.addSubview(cancelButton)
@@ -64,7 +64,7 @@ final class DateTimePickerViewController: UIViewController {
             doneButton.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -16),
             doneButton.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 13),
             
-            dateTimeFields.topAnchor.constraint(equalTo: cancelButton.bottomAnchor, constant: 25),
+            dateTimeFields.topAnchor.constraint(equalTo: cancelButton.bottomAnchor, constant: 20),
             dateTimeFields.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 13),
             dateTimeFields.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -13),
             
@@ -95,9 +95,9 @@ final class DateTimePickerViewController: UIViewController {
     
     private func updateDateView(with date: Date?) {
         if let dateChosen = date {
-            dateView.setText(text: Date.dateToLocalizedString(for: .ru, date: dateChosen, withHours: false), color: .black, fontSize: 16, fontWeight: .regular)
+            dateView.setText(text: Date.dateToLocalizedString(for: .ru, date: dateChosen, withHours: false), color: .mainText, fontSize: 16, fontWeight: .regular)
         } else {
-            dateView.setText(text: "Выберите дату", color: UIColor(red: 124/255, green: 137/255, blue: 163/255, alpha: 1), fontSize: 16, fontWeight: .regular)
+            dateView.setText(text: "Выберите дату", color: .secondaryText, fontSize: 16, fontWeight: .regular)
         }
     }
     
@@ -105,9 +105,9 @@ final class DateTimePickerViewController: UIViewController {
         if let timeChosen = date {
             let format = DateFormatter()
             format.dateFormat = "HH:mm"
-            timeView.setText(text: format.string(from: timeChosen), color: .black, fontSize: 16, fontWeight: .regular)
+            timeView.setText(text: format.string(from: timeChosen), color: .mainText, fontSize: 16, fontWeight: .regular)
         } else {
-            timeView.setText(text: "Выберите время", color: UIColor(red: 124/255, green: 137/255, blue: 163/255, alpha: 1), fontSize: 16, fontWeight: .regular)
+            timeView.setText(text: "Выберите время", color: .secondaryText, fontSize: 16, fontWeight: .regular)
         }
         
     }
@@ -122,8 +122,7 @@ final class DateTimePickerViewController: UIViewController {
     private lazy var cancelButton: UIButton = {
         let button = UIButton(type: .system)
         let font = UIFont.systemFont(ofSize: 17, weight: .regular)
-        let textColor = UIColor(red: 0, green: 80/255, blue: 207/255, alpha: 1)
-        let title = NSAttributedString(string: "Отменить", attributes: [.font: font, .foregroundColor: textColor])
+        let title = NSAttributedString(string: "Отменить", attributes: [.font: font, .foregroundColor: UIColor.systemBlue])
         
         button.setAttributedTitle(title, for: .normal)
         button.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
@@ -134,6 +133,7 @@ final class DateTimePickerViewController: UIViewController {
     private lazy var sheetTitle: UILabel = {
         let label = UILabel()
         label.text = "Дата и время"
+        label.textColor = .mainText
         label.font = .systemFont(ofSize: 17, weight: .semibold)
         return label
     }()
@@ -142,11 +142,9 @@ final class DateTimePickerViewController: UIViewController {
         let button = UIButton(type: .system)
         button.addTarget(self, action: #selector(dismissAndSave), for: .touchUpInside)
         let font = UIFont.systemFont(ofSize: 17, weight: .semibold)
-        let textColorEnabled = UIColor(red: 0, green: 80/255, blue: 207/255, alpha: 1)
-        let textColorDisabled = UIColor(red: 0, green: 80/255, blue: 207/255, alpha: 0.4)
         
-        let titleEnabled = NSAttributedString(string: "Готово", attributes: [.font: font, .foregroundColor: textColorEnabled])
-        let titleDisabled = NSAttributedString(string: "Готово", attributes: [.font: font, .foregroundColor: textColorDisabled])
+        let titleEnabled = NSAttributedString(string: "Готово", attributes: [.font: font, .foregroundColor: UIColor.systemBlue])
+        let titleDisabled = NSAttributedString(string: "Готово", attributes: [.font: font, .foregroundColor: UIColor.systemBlue.withAlphaComponent(0.4)])
         
         button.setAttributedTitle(titleEnabled, for: .normal)
         button.setAttributedTitle(titleDisabled, for: .disabled)
@@ -155,7 +153,6 @@ final class DateTimePickerViewController: UIViewController {
     }()
     
     private lazy var dateTimeFields: UIStackView = {
-        let textColor = UIColor(red: 124/255, green: 137/255, blue: 163/255, alpha: 1)
         
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(showCalendar))
         dateView.addGestureRecognizer(tapRecognizer)

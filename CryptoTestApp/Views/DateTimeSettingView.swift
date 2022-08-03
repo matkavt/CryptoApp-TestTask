@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 final class DateTimeSettingView: UIView {
+    private var isTapped = false
 
     func setUpTimeSetting(for date: Date, for time: Date?, with icon: UIImage?, title: String, showWeekDay: Bool) {
         let calendar = Calendar(identifier: .gregorian)
@@ -63,18 +64,40 @@ final class DateTimeSettingView: UIView {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = ""
+        label.textColor = .mainText
         label.font = .systemFont(ofSize: 17, weight: .regular)
         return label
     }()
     
     private lazy var dateLabel: UILabel = {
-        let textColor = UIColor(red: 124/255, green: 137/255, blue: 163/255, alpha: 1)
         let label = UILabel()
         label.text = ""
         label.font = .systemFont(ofSize: 17, weight: .regular)
-        label.textColor = textColor
+        label.textColor = .secondaryText
         return label
     }()
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        isTapped = true
+        backgroundColor = .mainText.withAlphaComponent(0.1)
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if isTapped {
+            UIView.animate(withDuration: 0.1, delay: 0.1, animations: {
+                self.backgroundColor = .background
+            })
+            
+        }
+    }
+    
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if isTapped {
+            UIView.animate(withDuration: 0.1, delay: 0.1, animations: {
+                self.backgroundColor = .background
+            })
+            
+        }
+    }
 }
 

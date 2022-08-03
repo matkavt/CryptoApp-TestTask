@@ -19,7 +19,7 @@ final class TimePickerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = .background
 
         view.addSubview(cancelButton)
         view.addSubview(sheetTitle)
@@ -75,8 +75,7 @@ final class TimePickerViewController: UIViewController {
         button.addGestureRecognizer(tapRecognizer)
         
         let font = UIFont.systemFont(ofSize: 17, weight: .regular)
-        let textColor = UIColor(red: 0, green: 80/255, blue: 207/255, alpha: 1)
-        let title = NSAttributedString(string: "Отменить", attributes: [.font: font, .foregroundColor: textColor])
+        let title = NSAttributedString(string: "Отменить", attributes: [.font: font, .foregroundColor: UIColor.systemBlue])
       
         button.setAttributedTitle(title, for: .normal)
         
@@ -86,6 +85,7 @@ final class TimePickerViewController: UIViewController {
     private lazy var sheetTitle: UILabel = {
         let label = UILabel()
         label.text = "Выберите время"
+        label.textColor = .mainText
         label.font = .systemFont(ofSize: 17, weight: .semibold)
         return label
     }()
@@ -96,11 +96,9 @@ final class TimePickerViewController: UIViewController {
         button.addGestureRecognizer(tapRecognizer)
         
         let font = UIFont.systemFont(ofSize: 17, weight: .semibold)
-        let textColorEnabled = UIColor(red: 230/255, green: 70/255, blue: 70/255, alpha: 1)
-        let textColorDisabled = UIColor(red: 230/255, green: 70/255, blue: 70/255, alpha: 0.4)
 
-        let titleEnabled = NSAttributedString(string: "Удалить", attributes: [.font: font, .foregroundColor: textColorEnabled])
-        let titleDisabled = NSAttributedString(string: "Удалить", attributes: [.font: font, .foregroundColor: textColorDisabled])
+        let titleEnabled = NSAttributedString(string: "Удалить", attributes: [.font: font, .foregroundColor: UIColor.systemRed])
+        let titleDisabled = NSAttributedString(string: "Удалить", attributes: [.font: font, .foregroundColor: UIColor.systemRed.withAlphaComponent(0.4)])
       
         button.setAttributedTitle(titleEnabled, for: .normal)
         button.setAttributedTitle(titleDisabled, for: .disabled)
@@ -125,7 +123,7 @@ final class TimePickerViewController: UIViewController {
     private lazy var chooseButton: RoundedButton = {
         let roundedButton = RoundedButton()
         roundedButton.setText(text: "Выбрать", color: .white, fontSize: 17, fontWeight: .medium)
-        roundedButton.setBackgroundColor(UIColor(red: 0, green: 80/255, blue: 207/255, alpha: 1))
+        roundedButton.backgroundColor = .systemBlue
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(updateSelection))
         roundedButton.addGestureRecognizer(tapRecognizer)
         return roundedButton

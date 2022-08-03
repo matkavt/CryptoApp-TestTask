@@ -38,7 +38,7 @@ final class CustomSheetPresentationController: UIPresentationController {
 
         presentedViewController.view.clipsToBounds = true
         presentedViewController.view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        presentedViewController.view.layer.cornerRadius = 10
+        presentedViewController.view.layer.cornerRadius = 15
         addShade()
 
     }

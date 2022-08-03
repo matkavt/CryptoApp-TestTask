@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 final class RoundedLabelView: UIView {
+    private var isTapped = false
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -22,8 +23,7 @@ final class RoundedLabelView: UIView {
     }
     
     private func setUp() {
-        // TODO: Make resource file with all the colors
-        backgroundColor = UIColor(red: 0.949, green: 0.953, blue: 0.961, alpha: 1)
+        backgroundColor = .secondaryBackground
         layer.cornerRadius = 10
         
         textLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -41,6 +41,7 @@ final class RoundedLabelView: UIView {
     private lazy var textLabel: UILabel = {
         let label = UILabel()
         label.text = ""
+        label.textColor = .secondaryText
         label.textAlignment = .center
         return label
     }()
@@ -53,6 +54,28 @@ final class RoundedLabelView: UIView {
     
     func getText() -> String {
         return textLabel.text ?? ""
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        isTapped = true
+        backgroundColor = .black.withAlphaComponent(0.1)
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if isTapped {
+            UIView.animate(withDuration: 0.1, delay: 0.1, animations: {
+                self.backgroundColor = .secondaryBackground
+            })
+        }
+    }
+    
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if isTapped {
+            UIView.animate(withDuration: 0.1, delay: 0.1, animations: {
+                self.backgroundColor = .secondaryBackground
+            })
+            
+        }
     }
     
 }

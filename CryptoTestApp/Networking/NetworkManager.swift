@@ -18,6 +18,7 @@ final class NetworkManager {
             return
         }
         
+        print("loading set to true")
         isLoading = true
         let resource = ETHLiveResource()
         let request = ETHCostRequest(resource: resource)
@@ -26,6 +27,8 @@ final class NetworkManager {
             DispatchQueue.main.async {
                 completion(response)
                 self.isLoading = false
+                print("loading set to false")
+
             }
         }
     }

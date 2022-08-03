@@ -24,6 +24,7 @@
 		DB096670289A6330008D278B /* ETHCostCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB09666F289A6330008D278B /* ETHCostCache.swift */; };
 		DB096672289AA4EE008D278B /* DateTimeOptionsMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB096671289AA4ED008D278B /* DateTimeOptionsMenuView.swift */; };
 		DB096674289AB846008D278B /* CopyToClipboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB096673289AB846008D278B /* CopyToClipboardView.swift */; };
+		DB096677289B20FB008D278B /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB096676289B20FA008D278B /* Colors.swift */; };
 		DB1980972896E3AA00459C6C /* LiveLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1980962896E3AA00459C6C /* LiveLabelView.swift */; };
 		DB1980992896E83D00459C6C /* DateTimePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1980982896E83D00459C6C /* DateTimePickerViewController.swift */; };
 		DB19809C289704AE00459C6C /* CustomSheetTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB19809B289704AE00459C6C /* CustomSheetTransitionDelegate.swift */; };
@@ -60,6 +61,7 @@
 		DB09666F289A6330008D278B /* ETHCostCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETHCostCache.swift; sourceTree = "<group>"; };
 		DB096671289AA4ED008D278B /* DateTimeOptionsMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeOptionsMenuView.swift; sourceTree = "<group>"; };
 		DB096673289AB846008D278B /* CopyToClipboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyToClipboardView.swift; sourceTree = "<group>"; };
+		DB096676289B20FA008D278B /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		DB1980962896E3AA00459C6C /* LiveLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveLabelView.swift; sourceTree = "<group>"; };
 		DB1980982896E83D00459C6C /* DateTimePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimePickerViewController.swift; sourceTree = "<group>"; };
 		DB19809B289704AE00459C6C /* CustomSheetTransitionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSheetTransitionDelegate.swift; sourceTree = "<group>"; };
@@ -123,6 +125,14 @@
 			path = Cache;
 			sourceTree = "<group>";
 		};
+		DB096675289B20E2008D278B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DB096676289B20FA008D278B /* Colors.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		DB19809A2897047700459C6C /* Transitions */ = {
 			isa = PBXGroup;
 			children = (
@@ -162,13 +172,14 @@
 		DB8C91942896675F0085C9A3 /* CryptoTestApp */ = {
 			isa = PBXGroup;
 			children = (
+				DB096675289B20E2008D278B /* Resources */,
 				DB0966612899BC8D008D278B /* Extensions */,
 				DB096664289A5BDA008D278B /* Cache */,
 				DB096654289980F5008D278B /* Networking */,
 				DB1980A32897F93B00459C6C /* Models */,
-				DB8C91AC28966F110085C9A3 /* Views */,
 				DB8C91A9289669660085C9A3 /* Controllers */,
 				DB19809A2897047700459C6C /* Transitions */,
+				DB8C91AC28966F110085C9A3 /* Views */,
 				DB8C91952896675F0085C9A3 /* AppDelegate.swift */,
 				DB8C91972896675F0085C9A3 /* SceneDelegate.swift */,
 				DB8C919E289667660085C9A3 /* Assets.xcassets */,
@@ -299,6 +310,7 @@
 				DB8C91AE28966F300085C9A3 /* RoundedButton.swift in Sources */,
 				DB0966582899850D008D278B /* ETHCostRequest.swift in Sources */,
 				DB09666A289A5E7F008D278B /* CacheResource.swift in Sources */,
+				DB096677289B20FB008D278B /* Colors.swift in Sources */,
 				DB1980AB28988FAB00459C6C /* CustomSheetDismissalController.swift in Sources */,
 				DB096653289972DB008D278B /* ETHCostResponse.swift in Sources */,
 				DB096670289A6330008D278B /* ETHCostCache.swift in Sources */,

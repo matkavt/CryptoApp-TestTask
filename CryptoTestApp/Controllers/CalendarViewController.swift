@@ -14,7 +14,6 @@ final class CalendarViewController: UIViewController {
         didSet {
             if let _ = previousDate {
                 deleteButton.isEnabled = true
-
             }
         }
     }
@@ -23,7 +22,7 @@ final class CalendarViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = .background
 
         view.addSubview(cancelButton)
         view.addSubview(sheetTitle)
@@ -73,8 +72,7 @@ final class CalendarViewController: UIViewController {
     private lazy var cancelButton: UIButton = {
         let button = UIButton(type: .system)
         let font = UIFont.systemFont(ofSize: 17, weight: .regular)
-        let textColor = UIColor(red: 0, green: 80/255, blue: 207/255, alpha: 1)
-        let title = NSAttributedString(string: "Отменить", attributes: [.font: font, .foregroundColor: textColor])
+        let title = NSAttributedString(string: "Отменить", attributes: [.font: font, .foregroundColor: UIColor.systemBlue])
         
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissCalendar))
         button.addGestureRecognizer(tapRecognizer)
@@ -87,6 +85,7 @@ final class CalendarViewController: UIViewController {
     private lazy var sheetTitle: UILabel = {
         let label = UILabel()
         label.text = "Выберите дату"
+        label.textColor = .mainText
         label.font = .systemFont(ofSize: 17, weight: .semibold)
         return label
     }()
@@ -94,11 +93,9 @@ final class CalendarViewController: UIViewController {
     private lazy var deleteButton: UIButton = {
         let button = UIButton(type: .system)
         let font = UIFont.systemFont(ofSize: 17, weight: .semibold)
-        let textColorEnabled = UIColor(red: 230/255, green: 70/255, blue: 70/255, alpha: 1)
-        let textColorDisabled = UIColor(red: 230/255, green: 70/255, blue: 70/255, alpha: 0.4)
 
-        let titleEnabled = NSAttributedString(string: "Удалить", attributes: [.font: font, .foregroundColor: textColorEnabled])
-        let titleDisabled = NSAttributedString(string: "Удалить", attributes: [.font: font, .foregroundColor: textColorDisabled])
+        let titleEnabled = NSAttributedString(string: "Удалить", attributes: [.font: font, .foregroundColor: UIColor.systemRed])
+        let titleDisabled = NSAttributedString(string: "Удалить", attributes: [.font: font, .foregroundColor: UIColor.systemRed.withAlphaComponent(0.4)])
         button.addTarget(self, action: #selector(deleteSelection), for: .touchUpInside)
       
         button.setAttributedTitle(titleEnabled, for: .normal)

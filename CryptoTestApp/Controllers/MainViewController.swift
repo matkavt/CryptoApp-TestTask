@@ -15,6 +15,7 @@ final class MainViewController: UIViewController {
     private var customTransitioningDelegate: UIViewControllerTransitioningDelegate?
     private let networkManager = NetworkManager()
     private let cacheManager = ETHCostCache()
+    private var timer: Timer?
     
     private var isLive = true {
         didSet {
@@ -38,9 +39,9 @@ final class MainViewController: UIViewController {
     private var savedDate: Date? {
         didSet {
             if let savedDate = savedDate {
-                dateTimeFieldView.setText(text: Date.dateToLocalizedString(for: .ru, date: savedDate, withHours: true), color: .black, fontSize: 16, fontWeight: .regular)
+                dateTimeFieldView.setText(text: Date.dateToLocalizedString(for: .ru, date: savedDate, withHours: true), color: .mainText, fontSize: 16, fontWeight: .regular)
             } else {
-                dateTimeFieldView.setText(text: "Cейчас", color: .black, fontSize: 16, fontWeight: .regular)
+                dateTimeFieldView.setText(text: "Cейчас", color: .mainText, fontSize: 16, fontWeight: .regular)
             }
         }
     }
@@ -49,7 +50,7 @@ final class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .white
+        view.backgroundColor = .background
         view.addSubview(appTitleLabel)
         view.addSubview(dateTimeFieldView)
         view.addSubview(dateTimePickerButton)
@@ -106,24 +107,27 @@ final class MainViewController: UIViewController {
     
     
     private func startTimer() {
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
-            if let _ = self.savedDate {
-                self.networkManager.isLoading = false
-                timer.invalidate()
-            }
-            
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
             self.networkManager.fetchLiveETHCost {data in
                 if let cost = data?.cost {
-                    self.currentCost = cost
+                    
+                    if self.isLive {
+                        self.currentCost = cost
+                        print("updating cost")
+                    }
                 }
             }
         }
     }
     
-    private func getCost(by date: Date) {
+    private func getCostAndSaveToCache(by date: Date) {
         networkManager.fetchETHCost(by: date) { data in
             if let cost = data?.eth.usd {
                 self.currentCost = cost
+                print("got historical")
+                
+                print("saving for \(cost)")
+                self.cacheManager.saveETHCostToCache(dateTime: date, cost: cost)
             }
         }
     }
@@ -154,17 +158,16 @@ final class MainViewController: UIViewController {
     private var copyToClipboardView: CopyToClipboardView = {
         let view = CopyToClipboardView()
         view.layer.masksToBounds = false
-        view.layer.shadowColor = UIColor.black.cgColor
         view.layer.shadowOpacity = 0.15
         view.layer.shadowRadius = 10
         view.layer.shadowOffset = CGSize(width: 0, height: 0)
-        view.layer.shouldRasterize = true
         return view
     }()
     
     private lazy var appTitleLabel: UILabel = {
         let label = UILabel()
         label.text = "Тестовое задание"
+        label.textColor = .mainText
         label.font = .systemFont(ofSize: 17, weight: .semibold)
         label.textAlignment = .center
         return label
@@ -199,11 +202,14 @@ final class MainViewController: UIViewController {
         present(destinationVC, animated: true)
     }
     
-    @objc private func copyToClipboard() {
+    @objc private func copyToClipboard(gesture: UITapGestureRecognizer) {
+        
+        copyToClipboardView.layer.shadowColor = UIColor.mainText.cgColor
+
         UIPasteboard.general.string = dateTimeFieldView.getText()
         
         UIView.animate(withDuration: 0.2, animations: { [self] in copyToClipboardView.alpha = 1.0 }) { (finished) in
-            UIView.animate(withDuration: 0.15, delay: 2, animations: {self.copyToClipboardView.alpha = 0.0})
+            UIView.animate(withDuration: 0.15, delay: 2, animations: { self.copyToClipboardView.alpha = 0.0 })
         }
     }
 }
@@ -225,17 +231,17 @@ extension MainViewController: CustomSheetDismissalController {
 
 extension MainViewController: DateTimeReceiverDelegate {
     func receiveDate(_ date: Date?) {
-        
+        print("received date")
         savedDate = date
         
         if let date = date {
+            networkManager.isLoading = false
             isLive = false
+            self.timer?.invalidate()
+            
             DispatchQueue.main.async { [self] in
-                getCost(by: date)
-                
-                if let currentCost = currentCost {
-                    cacheManager.saveETHCostToCache(dateTime: date, cost: currentCost)
-                }
+                print("get historical")
+                getCostAndSaveToCache(by: date)
             }
             
         } else {

@@ -11,7 +11,7 @@ import UIKit
 final class CopyToClipboardView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .white
+        backgroundColor = .background.withAlphaComponent(0.9)
         layer.cornerRadius = 10
 
         addSubview(icon)
@@ -53,6 +53,7 @@ final class CopyToClipboardView: UIView {
     private lazy var textLabel: UILabel = {
         let label = UILabel()
         label.text = "Скопировано в буфер обмена"
+        label.textColor = .mainText
         label.font = .systemFont(ofSize: 15, weight: .regular)
         return label
     }()
