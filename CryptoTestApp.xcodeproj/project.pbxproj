@@ -23,6 +23,7 @@
 		DB09666E289A61C2008D278B /* ETHCacheResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB09666D289A61C2008D278B /* ETHCacheResource.swift */; };
 		DB096670289A6330008D278B /* ETHCostCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB09666F289A6330008D278B /* ETHCostCache.swift */; };
 		DB096672289AA4EE008D278B /* DateTimeOptionsMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB096671289AA4ED008D278B /* DateTimeOptionsMenuView.swift */; };
+		DB096674289AB846008D278B /* CopyToClipboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB096673289AB846008D278B /* CopyToClipboardView.swift */; };
 		DB1980972896E3AA00459C6C /* LiveLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1980962896E3AA00459C6C /* LiveLabelView.swift */; };
 		DB1980992896E83D00459C6C /* DateTimePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1980982896E83D00459C6C /* DateTimePickerViewController.swift */; };
 		DB19809C289704AE00459C6C /* CustomSheetTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB19809B289704AE00459C6C /* CustomSheetTransitionDelegate.swift */; };
@@ -58,6 +59,7 @@
 		DB09666D289A61C2008D278B /* ETHCacheResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETHCacheResource.swift; sourceTree = "<group>"; };
 		DB09666F289A6330008D278B /* ETHCostCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETHCostCache.swift; sourceTree = "<group>"; };
 		DB096671289AA4ED008D278B /* DateTimeOptionsMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeOptionsMenuView.swift; sourceTree = "<group>"; };
+		DB096673289AB846008D278B /* CopyToClipboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyToClipboardView.swift; sourceTree = "<group>"; };
 		DB1980962896E3AA00459C6C /* LiveLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveLabelView.swift; sourceTree = "<group>"; };
 		DB1980982896E83D00459C6C /* DateTimePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimePickerViewController.swift; sourceTree = "<group>"; };
 		DB19809B289704AE00459C6C /* CustomSheetTransitionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSheetTransitionDelegate.swift; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 				DB19809F2897DBA600459C6C /* RoundedLabelView.swift */,
 				DB1980A12897EB6700459C6C /* DateTimeSettingView.swift */,
 				DB096671289AA4ED008D278B /* DateTimeOptionsMenuView.swift */,
+				DB096673289AB846008D278B /* CopyToClipboardView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -285,6 +288,7 @@
 				DB8C91962896675F0085C9A3 /* AppDelegate.swift in Sources */,
 				DB1980972896E3AA00459C6C /* LiveLabelView.swift in Sources */,
 				DB096668289A5D18008D278B /* ETHCostDateTime.swift in Sources */,
+				DB096674289AB846008D278B /* CopyToClipboardView.swift in Sources */,
 				DB1980A928985B7600459C6C /* TimePickerViewController.swift in Sources */,
 				DB8C91982896675F0085C9A3 /* SceneDelegate.swift in Sources */,
 				DB09666C289A5F64008D278B /* CostCacheManager.swift in Sources */,

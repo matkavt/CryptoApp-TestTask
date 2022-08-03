@@ -55,10 +55,16 @@ final class MainViewController: UIViewController {
         view.addSubview(dateTimePickerButton)
         view.addSubview(currencyView)
         view.addSubview(liveLabel)
+        view.addSubview(copyToClipboardView)
+        
+        copyToClipboardView.alpha = 0.0
         setUpConstraints()
         
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(showDateTimePicker))
         dateTimePickerButton.addGestureRecognizer(tapRecognizer)
+        
+        let copyToClipboardRecognizer = UITapGestureRecognizer(target: self, action: #selector(copyToClipboard))
+        dateTimeFieldView.addGestureRecognizer(copyToClipboardRecognizer)
         
         getFromCache()
     }
@@ -89,6 +95,11 @@ final class MainViewController: UIViewController {
             
             liveLabel.topAnchor.constraint(equalTo: dateTimePickerButton.bottomAnchor, constant: 36),
             liveLabel.leadingAnchor.constraint(equalTo: currencyView.trailingAnchor, constant: 4),
+            
+            copyToClipboardView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -8),
+            copyToClipboardView.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
+            copyToClipboardView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 8),
+            copyToClipboardView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -8)
             
         ])
     }
@@ -128,7 +139,7 @@ final class MainViewController: UIViewController {
     private func getFromCache() {
         DispatchQueue.main.async { [self] in
             let data = cacheManager.getETHCostFromCache()
-
+            
             if let savedDate = data?.0, let currentCost = data?.1 {
                 self.isLive = false
                 self.savedDate = savedDate
@@ -139,6 +150,17 @@ final class MainViewController: UIViewController {
             }
         }
     }
+    
+    private var copyToClipboardView: CopyToClipboardView = {
+        let view = CopyToClipboardView()
+        view.layer.masksToBounds = false
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOpacity = 0.15
+        view.layer.shadowRadius = 10
+        view.layer.shadowOffset = CGSize(width: 0, height: 0)
+        view.layer.shouldRasterize = true
+        return view
+    }()
     
     private lazy var appTitleLabel: UILabel = {
         let label = UILabel()
@@ -176,7 +198,16 @@ final class MainViewController: UIViewController {
         destinationVC.transitioningDelegate = customTransitioningDelegate
         present(destinationVC, animated: true)
     }
+    
+    @objc private func copyToClipboard() {
+        UIPasteboard.general.string = dateTimeFieldView.getText()
+        
+        UIView.animate(withDuration: 0.2, animations: { [self] in copyToClipboardView.alpha = 1.0 }) { (finished) in
+            UIView.animate(withDuration: 0.15, delay: 2, animations: {self.copyToClipboardView.alpha = 0.0})
+        }
+    }
 }
+
 
 extension MainViewController: CustomSheetPresentationControllerFactory {
     func makeCustomSheetPresentationController(presentedViewController: UIViewController, presentingViewController: UIViewController?) -> CustomSheetPresentationController {
@@ -194,7 +225,7 @@ extension MainViewController: CustomSheetDismissalController {
 
 extension MainViewController: DateTimeReceiverDelegate {
     func receiveDate(_ date: Date?) {
-
+        
         savedDate = date
         
         if let date = date {

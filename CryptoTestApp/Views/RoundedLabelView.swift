@@ -51,4 +51,8 @@ final class RoundedLabelView: UIView {
         textLabel.font = .systemFont(ofSize: fontSize, weight: fontWeight)
     }
     
+    func getText() -> String {
+        return textLabel.text ?? ""
+    }
+    
 }
