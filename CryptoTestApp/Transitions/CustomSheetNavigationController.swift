@@ -69,3 +69,5 @@ extension UINavigationController {
         popToRootViewController(animated: false)
     }
 }
+
+// Доверюсь тебе, тут я не очень шарю

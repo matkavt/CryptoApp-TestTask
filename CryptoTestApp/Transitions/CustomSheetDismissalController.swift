@@ -10,3 +10,5 @@ import Foundation
 protocol CustomSheetDismissalController {
     func performDismissal(animated: Bool)
 }
+
+// Доверюсь тебе, тут я не очень шарю

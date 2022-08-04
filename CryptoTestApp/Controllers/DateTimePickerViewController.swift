@@ -11,8 +11,8 @@ import UIKit
 final class DateTimePickerViewController: UIViewController {
     
     var receiverDelegate: DateTimeReceiverDelegate?
-    var timeLabelConstraint: NSLayoutConstraint?
-    var dateLabelConstraint: NSLayoutConstraint?
+    var timeLabelConstraint: NSLayoutConstraint? // приват
+    var dateLabelConstraint: NSLayoutConstraint? // приват
     
     var dateChosen: Date? {
         didSet {
@@ -76,6 +76,7 @@ final class DateTimePickerViewController: UIViewController {
         ])
         
         view.layoutIfNeeded()
+        // Что-то с лэйаутом не так, прикрепил видео. Не работают кнопки и не видны дни недели
     }
     
     override func viewDidLayoutSubviews() {

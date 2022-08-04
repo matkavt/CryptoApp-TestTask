@@ -31,7 +31,7 @@ final class CalendarViewController: UIViewController {
         
         if let _ = previousDate { deleteButton.isEnabled = true } else {
             deleteButton.isEnabled = false
-        }
+        } // :))
         
         setUpConstraints()
     }
@@ -68,6 +68,7 @@ final class CalendarViewController: UIViewController {
             calendarView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -5)
             
         ])
+        // Что-то с лэйаутом не так, прикрепил видео. Не работают кнопки и не видны дни недели
     }
     
    
@@ -112,7 +113,9 @@ final class CalendarViewController: UIViewController {
         datePicker.datePickerMode = .date
         
         // TODO: Здесь баг. Если пользователь выберет месяц или год в ручную через всплывающее окно, .valueChanged затригерится
-        datePicker.addTarget(self, action: #selector(updateSelection), for: .valueChanged)
+        
+        // Да, есть такое
+        datePicker.addTarget(self, action: #selector(updateSelection), for: .allEvents)
         
         if let previousDate = previousDate {
             datePicker.date = previousDate

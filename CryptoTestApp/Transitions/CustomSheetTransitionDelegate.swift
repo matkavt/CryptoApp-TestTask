@@ -58,6 +58,4 @@ protocol CustomSheetPresentationControllerFactory {
     func makeCustomSheetPresentationController(presentedViewController: UIViewController, presentingViewController: UIViewController?) -> CustomSheetPresentationController
 }
 
-
-
-
+// Доверюсь тебе, тут я не очень шарю

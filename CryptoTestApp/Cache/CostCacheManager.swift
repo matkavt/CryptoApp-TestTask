@@ -40,3 +40,5 @@ extension CostCacheManager: GenericCacheManager {
         defaults.removeObject(forKey: resource.key)
     }
 }
+
+// Остановись :(

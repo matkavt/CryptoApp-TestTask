@@ -111,7 +111,7 @@ final class TimePickerViewController: UIViewController {
         let datePicker = UIDatePicker()
         datePicker.preferredDatePickerStyle = .wheels
         datePicker.datePickerMode = .time
-        datePicker.locale = Locale.init(identifier: "en_gb")
+        datePicker.locale = Locale.init(identifier: "en_gb") // Почему не "ru"? 🧐
         datePicker.sizeToFit()
         
         if let previousTime = previousTime {

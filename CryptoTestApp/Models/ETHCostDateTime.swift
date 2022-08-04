@@ -12,3 +12,5 @@ struct ETHCostDateTime: Codable {
     let dateTime: Date
     let cost: Double
 }
+
+// Про кэш много написал в ETHCostCache

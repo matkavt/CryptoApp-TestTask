@@ -14,3 +14,6 @@ final class ETHCacheResource: CacheResource {
     /// Ключ для обращения к данным в UserDefaults
     var key = "ETH_Cache"
 }
+
+
+// Noooooo

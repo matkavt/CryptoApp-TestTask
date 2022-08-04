@@ -52,7 +52,7 @@ final class CopyToClipboardView: UIView {
     
     private lazy var textLabel: UILabel = {
         let label = UILabel()
-        label.text = "Скопировано в буфер обмена"
+        label.text = "Скопировано в буфер обмена" // Зачем локализация дней недели, если тут её нет
         label.textColor = .mainText
         label.font = .systemFont(ofSize: 15, weight: .regular)
         return label

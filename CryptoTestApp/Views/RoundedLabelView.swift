@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 final class RoundedLabelView: UIView {
-    private var isTapped = false
+    private var isTapped = false // зачем?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -57,7 +57,7 @@ final class RoundedLabelView: UIView {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        isTapped = true
+        isTapped = true // зачем?
         backgroundColor = .black.withAlphaComponent(0.1)
     }
     

@@ -10,7 +10,7 @@ import Foundation
 /// Протокол, описывающий ресурс, который можно получить в результате запроса в сеть
 protocol APIResource {
     associatedtype ModelType: Decodable
-    var time: String? {get}
+    var time: String? {get} // 🤔
 }
 
 extension APIResource {
@@ -18,7 +18,8 @@ extension APIResource {
     var url: URL {
         var components: URLComponents
         
-        if let time = time {
+        // time можно наверно более умно прокидывать автоматом
+        if let time = time { // 🤔
             components = URLComponents(string: "https://min-api.cryptocompare.com/data/pricehistorical")!
             components.queryItems = []
             components.queryItems?.append(URLQueryItem(name: "fsym", value: "ETH"))

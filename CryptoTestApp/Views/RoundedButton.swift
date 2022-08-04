@@ -11,7 +11,7 @@ import UIKit
 final class RoundedButton: UIView {
     
     private let gradient = CAGradientLayer()
-    private var isTapped = false
+    private var isTapped = false // зачем?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -85,7 +85,7 @@ final class RoundedButton: UIView {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        isTapped = true
+        isTapped = true // зачем?
         alpha = 0.7
     }
     

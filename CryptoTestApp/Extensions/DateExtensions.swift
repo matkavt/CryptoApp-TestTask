@@ -34,8 +34,10 @@ extension Date {
 
 extension Date {
     static func getWeekdayLocalizedRussian(by index: Int) -> String? {
+        // Вообще имхо имело бы смысл с 0 начинать и до 6 - тут же index
         
         guard index < 8 else { return nil }
+        guard index > 0 else { return nil } // одна проверка есть, почему бы не написать вторую
         
         let names = [
             "Вс",
@@ -47,7 +49,7 @@ extension Date {
             "Сб",
         ]
         
-        return names[index-1]
+        return names[index-1] // Вроде как это можно сделать умнее и для разных локализаций. Но для тз конечно хорошо и так
     }
 }
 
@@ -57,7 +59,7 @@ extension Date {
     
     enum Localization {
         case ru
-    }
+    }//Если заморачиваться с этим, то имхо имело бы смысл системную локализацию использовать. Такой подход плохо масштабируется
     
     static func dateToLocalizedString(for locale: Localization, date: Date, withHours: Bool) -> String {
         let calendar = Calendar(identifier: .gregorian)
@@ -88,6 +90,8 @@ extension Date {
             
             return "\(day) \(monthNames[month-1]). \(year) г., \(Date.getWeekdayLocalizedRussian(by: weekday)!)\(withHours ? ", \(format.string(from: date))" : "")"
         }
+        
+        // + замечания, аналогичные к функции getWeekdayLocalizedRussian
     }
 }
 

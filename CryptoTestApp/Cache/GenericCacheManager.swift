@@ -16,3 +16,5 @@ protocol GenericCacheManager {
     func getFromCache() -> ModelType?
     func removeFromCache()
 }
+
+// Круто

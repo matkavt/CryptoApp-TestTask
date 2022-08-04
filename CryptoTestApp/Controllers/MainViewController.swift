@@ -23,6 +23,7 @@ final class MainViewController: UIViewController {
             if isLive {
                 startTimer()
             }
+            // else старый таймер не выключается и работает одновременно с новым
         }
     }
     
@@ -31,7 +32,7 @@ final class MainViewController: UIViewController {
             if let currentCost = currentCost {
                 currencyView.exchangeResult = currentCost
             } else {
-                currencyView.exchangeResult = 0.0
+                currencyView.exchangeResult = 0.0 // :((
             }
         }
     }
@@ -41,7 +42,7 @@ final class MainViewController: UIViewController {
             if let savedDate = savedDate {
                 dateTimeFieldView.setText(text: Date.dateToLocalizedString(for: .ru, date: savedDate, withHours: true), color: .mainText, fontSize: 16, fontWeight: .regular)
             } else {
-                dateTimeFieldView.setText(text: "Cейчас", color: .mainText, fontSize: 16, fontWeight: .regular)
+                dateTimeFieldView.setText(text: "Cейчас", color: .mainText, fontSize: 16, fontWeight: .regular) // Зачем локализация дней недели, если тут её нет
             }
         }
     }
@@ -109,7 +110,9 @@ final class MainViewController: UIViewController {
     // - MARK: Logic for getting cost of ETH
     
     private func startTimer() {
+        let startTimerHash = Int.random(in: 0...100)
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
+            // утечка памяти, нужно self сделать weak
             self.networkManager.fetchLiveETHCost {data in
                 if let cost = data?.cost {
                     
@@ -118,11 +121,13 @@ final class MainViewController: UIViewController {
                     }
                 }
             }
+            print("\(startTimerHash) timer tick") // старый таймер работает одновременно с новым
         }
     }
     
     private func getCostAndSaveToCache(by date: Date) {
         networkManager.fetchETHCost(by: date) { data in
+            // утечка памяти, нужно self сделать weak
             if let cost = data?.eth.usd {
                 self.currentCost = cost
 
@@ -136,6 +141,7 @@ final class MainViewController: UIViewController {
 
     private func saveToCache() {
         DispatchQueue.main.async { [self] in
+            // Тут утечки как раз не должно быть
             if let dateTime = savedDate, let cost = currentCost {
                 self.cacheManager.saveETHCostToCache(dateTime: dateTime, cost: cost)
             }
@@ -144,6 +150,7 @@ final class MainViewController: UIViewController {
     
     private func getFromCache() {
         DispatchQueue.main.async { [self] in
+            // Тут утечки как раз не должно быть
             let data = cacheManager.getETHCostFromCache()
             
             if let savedDate = data?.0, let currentCost = data?.1 {
@@ -170,7 +177,7 @@ final class MainViewController: UIViewController {
     
     private lazy var appTitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Тестовое задание"
+        label.text = "Тестовое задание" // Зачем локализация дней недели, если тут её нет
         label.textColor = .mainText
         label.font = .systemFont(ofSize: 17, weight: .semibold)
         label.textAlignment = .center
@@ -185,7 +192,7 @@ final class MainViewController: UIViewController {
     
     private lazy var dateTimePickerButton: RoundedButton = {
         let roundedButton = RoundedButton(frame: .zero)
-        roundedButton.setText(text: "Выбрать дату", color: .white, fontSize: 17, fontWeight: .medium)
+        roundedButton.setText(text: "Выбрать дату", color: .white, fontSize: 17, fontWeight: .medium) // Зачем локализация дней недели, если тут её нет
         roundedButton.setUpGradient()
         return roundedButton
     }()
@@ -225,11 +232,18 @@ final class MainViewController: UIViewController {
 // - MARK: MainViewController implements delegate to receive data from previous screen
 
 extension MainViewController: DateTimeReceiverDelegate {
+    
+    // Используется 1 функция из двух и кажется, что этот протокол сюда не очень подходит
+    // 1 вариант это отдельно дата и отдельно время
+    // 2 вариант это дата и время внутри объекта Date
+    
     func receiveDate(_ date: Date?) {
         savedDate = date
         
         if let date = date {
-            networkManager.isLoading = false
+            networkManager.isLoading = false // зачем?
+            // Ответ я так понимаю что запрос может быть в процессе и тогда не получится отправить другой, НО!
+            // В таком случае этого мало, так как старый запрос не был отменён и когда если он задержится и придёт позже нового, то на экране будут неверные данные
             isLive = false
             self.timer?.invalidate()
             

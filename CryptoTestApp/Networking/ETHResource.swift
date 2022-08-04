@@ -10,12 +10,12 @@ import Foundation
 final class ETHLiveResource: APIResource {
     typealias ModelType = ETHCostResponse
     
-    var time: String?
+    var time: String? // 🤔
 
 }
 
 final class ETHHistoricalResource: APIResource {
     typealias ModelType = ETHCostResponseForTime
     
-    var time: String?
+    var time: String? // 🤔
 }

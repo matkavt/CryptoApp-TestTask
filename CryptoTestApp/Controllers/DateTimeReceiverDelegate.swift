@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol DateTimeReceiverDelegate {
+protocol DateTimeReceiverDelegate { // Писал, что для основного контроллера такой делегат не очень подходит
     func receiveDate(_ date: Date?) -> ()
     
     func receiveTime(_ time: Date?) -> ()

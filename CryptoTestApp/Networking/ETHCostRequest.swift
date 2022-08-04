@@ -18,12 +18,13 @@ final class ETHCostRequest<Resource: APIResource> {
 extension ETHCostRequest: APIRequestProtocol {
     
     func decode(_ data: Data) -> (Resource.ModelType?) {
-        let decoder = JSONDecoder()
+        let decoder = JSONDecoder() // Эта штука довольно стандартная, можно было бы засунуть в APIRequestProtocol как дефолтную функцию или вообещ сделать APIRequestProtocol классом и от него наследовать
         let decoded = try? decoder.decode(Resource.ModelType.self, from: data)
         return decoded
     }
     
     func execute(_ completion: @escaping (Resource.ModelType?) -> ()) {
-        load(resource.url, withCompletion: completion)
+        // time можно наверно более умно прокидывать автоматом тут
+        load(resource.url, withCompletion: completion) // аналогично
     }
 }

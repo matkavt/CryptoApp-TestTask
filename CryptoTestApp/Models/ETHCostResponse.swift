@@ -27,7 +27,7 @@ struct ETHCostResponseForTime: Decodable {
     }
 }
 
-struct Eth: Decodable {
+struct Eth: Decodable { // По сути это не Eth, а Coin, я так понимаю довольно базовый класс
     let usd: Double
 
     enum CodingKeys: String, CodingKey {

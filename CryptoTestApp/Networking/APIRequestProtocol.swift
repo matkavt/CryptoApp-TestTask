@@ -18,10 +18,10 @@ extension APIRequestProtocol {
     func load(_ url: URL, withCompletion completion: @escaping (ModelType?) -> ()) {
         let task = URLSession.shared.dataTask(with: url) { [weak self] (data, _, _) in
             guard let data = data, let decoded = self?.decode(data) else {
-                completion(nil)
+                completion(nil) // ошибочку мб обработать
                 return
             }
-                completion(decoded)
+            completion(decoded)
         }
         
         task.resume()

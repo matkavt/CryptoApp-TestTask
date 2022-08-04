@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 final class DateTimeSettingView: UIView {
-    private var isTapped = false
+    private var isTapped = false // зачем? Это есть в 3х местах, значит вряд ли оно просто так, видимо я чего-то не понимаюю Будет интересно узнать и понять
 
     func setUpTimeSetting(for date: Date, for time: Date?, with icon: UIImage?, title: String, showWeekDay: Bool) {
         let calendar = Calendar(identifier: .gregorian)
@@ -78,12 +78,12 @@ final class DateTimeSettingView: UIView {
     }()
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        isTapped = true
+        isTapped = true// зачем?
         backgroundColor = .mainText.withAlphaComponent(0.1)
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if isTapped {
+        if isTapped {// зачем?
             UIView.animate(withDuration: 0.1, delay: 0.1, animations: {
                 self.backgroundColor = .background
             })
@@ -92,7 +92,7 @@ final class DateTimeSettingView: UIView {
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if isTapped {
+        if isTapped {// зачем?
             UIView.animate(withDuration: 0.1, delay: 0.1, animations: {
                 self.backgroundColor = .background
             })

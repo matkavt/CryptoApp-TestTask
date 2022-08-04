@@ -15,4 +15,6 @@ protocol CacheResource {
     var key: String {get}
 }
 
+// Тоже вроде круто
+
 

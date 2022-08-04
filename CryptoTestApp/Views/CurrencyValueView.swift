@@ -11,7 +11,7 @@ import UIKit
 final class CurrencyValueView: UIStackView {
     
     let exchangeCount = 1
-    var exchangeResult = 0.0 {
+    var exchangeResult = 0.0 { // 0.0 такое себе, почем бы не использовать nil например?
         didSet {
             if oldValue == 0.0 { resultLabel.alpha = 1 }
             
