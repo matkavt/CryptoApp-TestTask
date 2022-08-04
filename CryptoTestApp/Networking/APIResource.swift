@@ -7,12 +7,14 @@
 
 import Foundation
 
+/// Протокол, описывающий ресурс, который можно получить в результате запроса в сеть
 protocol APIResource {
     associatedtype ModelType: Decodable
     var time: String? {get}
 }
 
 extension APIResource {
+    /// URL, по которому будет происходить обращение в сеть
     var url: URL {
         var components: URLComponents
         

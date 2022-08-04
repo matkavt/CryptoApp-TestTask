@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Модель для сохранения курса в кэш
 struct ETHCostDateTime: Codable {
     let dateTime: Date
     let cost: Double

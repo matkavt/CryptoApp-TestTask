@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Класс-обёртка над обощённым классом для работы с UserDefaults
 final class ETHCostCache {
     let manager: CostCacheManager<ETHCacheResource>
     

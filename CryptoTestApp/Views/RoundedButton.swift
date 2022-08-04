@@ -94,7 +94,6 @@ final class RoundedButton: UIView {
             UIView.animate(withDuration: 0.1, delay: 0.1, animations: {
                 self.alpha = 1
             })
-            
         }
     }
     

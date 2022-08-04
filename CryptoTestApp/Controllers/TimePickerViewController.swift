@@ -34,6 +34,11 @@ final class TimePickerViewController: UIViewController {
         setUpConstraints()
     }
     
+    override func viewDidLayoutSubviews() {
+        let height = cancelButton.bounds.height + chooseButton.bounds.height + 15 + 30 + 206
+        preferredContentSize = CGSize(width: view.bounds.width, height: height)
+    }
+    
     private func setUpConstraints() {
         view.subviews.forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
@@ -64,10 +69,6 @@ final class TimePickerViewController: UIViewController {
         view.layoutIfNeeded()
     }
     
-    override func viewDidLayoutSubviews() {
-        let height = cancelButton.bounds.height + chooseButton.bounds.height + 15 + 30 + 206
-        preferredContentSize = CGSize(width: view.bounds.width, height: height)
-    }
     
     private lazy var cancelButton: UIButton = {
         let button = UIButton(type: .system)

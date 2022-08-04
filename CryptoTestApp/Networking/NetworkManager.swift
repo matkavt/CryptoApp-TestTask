@@ -7,18 +7,19 @@
 
 import Foundation
 
+
 final class NetworkManager {
     private var liveRequest: ETHCostRequest<ETHLiveResource>?
     private var historicRequest: ETHCostRequest<ETHHistoricalResource>?
     private var time: String?
     var isLoading = false
     
+    /// Метод для получения текущего курса
     func fetchLiveETHCost(with completion: @escaping (ETHCostResponse?) -> ()) {
         guard !isLoading else {
             return
         }
         
-        print("loading set to true")
         isLoading = true
         let resource = ETHLiveResource()
         let request = ETHCostRequest(resource: resource)
@@ -27,12 +28,11 @@ final class NetworkManager {
             DispatchQueue.main.async {
                 completion(response)
                 self.isLoading = false
-                print("loading set to false")
-
             }
         }
     }
     
+    /// Метод для получения курса по конкретной дате и времени
     func fetchETHCost(by date: Date, with completion: @escaping (ETHCostResponseForTime?) -> ()) {
         guard !isLoading else {
             return

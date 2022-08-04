@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Протокол, описывающий обобщённый функционал для работы с сетью
 protocol APIRequestProtocol: AnyObject {
     associatedtype ModelType
     func decode(_ data: Data) -> ModelType?

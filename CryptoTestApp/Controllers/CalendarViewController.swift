@@ -36,6 +36,15 @@ final class CalendarViewController: UIViewController {
         setUpConstraints()
     }
     
+    override func viewDidLayoutSubviews() {
+        let height = cancelButton.bounds.height + 30 + 320
+        
+        UIView.animate(withDuration: 0.2, animations: { [self] in
+            preferredContentSize = CGSize(width: view.bounds.width, height: height)
+        })
+    }
+    
+    
     private func setUpConstraints() {
         view.subviews.forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
@@ -61,14 +70,7 @@ final class CalendarViewController: UIViewController {
         ])
     }
     
-    override func viewDidLayoutSubviews() {
-        let height = cancelButton.bounds.height + 30 + 320
-        
-        UIView.animate(withDuration: 0.2, animations: { [self] in
-            preferredContentSize = CGSize(width: view.bounds.width, height: height)
-        })
-    }
-    
+   
     private lazy var cancelButton: UIButton = {
         let button = UIButton(type: .system)
         let font = UIFont.systemFont(ofSize: 17, weight: .regular)
@@ -108,6 +110,8 @@ final class CalendarViewController: UIViewController {
         let datePicker = UIDatePicker()
         datePicker.preferredDatePickerStyle = .inline
         datePicker.datePickerMode = .date
+        
+        // TODO: Здесь баг. Если пользователь выберет месяц или год в ручную через всплывающее окно, .valueChanged затригерится
         datePicker.addTarget(self, action: #selector(updateSelection), for: .valueChanged)
         
         if let previousDate = previousDate {

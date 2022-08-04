@@ -106,6 +106,8 @@ final class MainViewController: UIViewController {
     }
     
     
+    // - MARK: Logic for getting cost of ETH
+    
     private func startTimer() {
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
             self.networkManager.fetchLiveETHCost {data in
@@ -113,7 +115,6 @@ final class MainViewController: UIViewController {
                     
                     if self.isLive {
                         self.currentCost = cost
-                        print("updating cost")
                     }
                 }
             }
@@ -124,14 +125,15 @@ final class MainViewController: UIViewController {
         networkManager.fetchETHCost(by: date) { data in
             if let cost = data?.eth.usd {
                 self.currentCost = cost
-                print("got historical")
-                
-                print("saving for \(cost)")
+
                 self.cacheManager.saveETHCostToCache(dateTime: date, cost: cost)
             }
         }
     }
     
+    
+    // - MARK: Logic for saving to cache
+
     private func saveToCache() {
         DispatchQueue.main.async { [self] in
             if let dateTime = savedDate, let cost = currentCost {
@@ -154,6 +156,8 @@ final class MainViewController: UIViewController {
             }
         }
     }
+    
+    // - MARK: UI Elements
     
     private var copyToClipboardView: CopyToClipboardView = {
         let view = CopyToClipboardView()
@@ -190,6 +194,9 @@ final class MainViewController: UIViewController {
     
     private lazy var liveLabel = LiveLabelView()
     
+    
+    // - MARK: UI Actions
+    
     @objc private func showDateTimePicker() {
         customTransitioningDelegate = CustomSheetTransitionDelegate(presentationControllerFactory: self)
         let vc = DateTimePickerViewController()
@@ -215,23 +222,10 @@ final class MainViewController: UIViewController {
 }
 
 
-extension MainViewController: CustomSheetPresentationControllerFactory {
-    func makeCustomSheetPresentationController(presentedViewController: UIViewController, presentingViewController: UIViewController?) -> CustomSheetPresentationController {
-        .init(presentedViewController: presentedViewController, presentingViewController: presentingViewController, dismissalHandler: self)
-    }
-    
-}
-
-extension MainViewController: CustomSheetDismissalController {
-    func performDismissal(animated: Bool) {
-        presentedViewController?.dismiss(animated: animated)
-    }
-    
-}
+// - MARK: MainViewController implements delegate to receive data from previous screen
 
 extension MainViewController: DateTimeReceiverDelegate {
     func receiveDate(_ date: Date?) {
-        print("received date")
         savedDate = date
         
         if let date = date {
@@ -240,7 +234,6 @@ extension MainViewController: DateTimeReceiverDelegate {
             self.timer?.invalidate()
             
             DispatchQueue.main.async { [self] in
-                print("get historical")
                 getCostAndSaveToCache(by: date)
             }
             
@@ -256,4 +249,19 @@ extension MainViewController: DateTimeReceiverDelegate {
     
     
 }
+
+
+extension MainViewController: CustomSheetPresentationControllerFactory {
+    func makeCustomSheetPresentationController(presentedViewController: UIViewController, presentingViewController: UIViewController?) -> CustomSheetPresentationController {
+        .init(presentedViewController: presentedViewController, presentingViewController: presentingViewController, dismissalHandler: self)
+    }
+    
+}
+
+extension MainViewController: CustomSheetDismissalController {
+    func performDismissal(animated: Bool) {
+        presentedViewController?.dismiss(animated: animated)
+    }
+}
+
 
